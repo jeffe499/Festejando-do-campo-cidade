@@ -1,0 +1,161 @@
+/* Reset e variáveis */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #2E7D32;
+  --secondary-color: #FFF3E0;
+  --accent-color: #FFB300;
+  --text-color: #333;
+  --bg-color: #fff;
+  --font-color: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+  font-family: var(--font-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Cabeçalho */
+header {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+.btn-menu {
+  background: none;
+  border: none;
+  color: var(--bg-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+/* Navegação */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--bg-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Hero, conteúdo, seções */
+#hero {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+#hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--bg-color);
+  text-align: center;
+  max-width: 80%;
+}
+
+.hero-text h2 {
+  font-size: 2.5rem;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+}
+
+/* Rodapé */
+footer {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 1rem 0;
+  margin-top: 2rem;
+  border-top: 2px solid var(--accent-color);
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+footer .social {
+  margin-top: 0.5rem;
+}
+
+footer .social a {
+  color: var(--text-color);
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+footer .social a:hover {
+  color: var(--primary-color);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .btn-menu {
+    display: block;
+  }
+
+  nav ul {
+    flex-direction: column;
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+    padding: 1rem 0;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  nav a {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}

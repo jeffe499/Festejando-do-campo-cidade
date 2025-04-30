@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #2E7D32;
+  --secondary: #FFF3E0;
+  --accent: #FFB300;
+  --text: #333;
+  --bg: #fff;
+  --font: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Cabeçalho */
+header {
+  background-color: var(--primary);
+  color: var(--bg);
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+.btn-menu {
+  background: none;
+  border: none;
+  color: var(--bg);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+/* Navegação */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--bg);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* Estilos da galeria */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.galeria .item {
+  border: 5px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.galeria .item img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.galeria .item img:hover {
+  transform: scale(1.1);
+}
+
+/* Estilos do footer */
+footer {
+  background-color: var(--secondary);
+  color: var(--text);
+  padding: 1rem 0;
+  margin-top: 2rem;
+  border-top: 2px solid var(--accent);
+}
+
+footer p {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+footer .social {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+footer .social a {
+  color: var(--text);
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+footer .social a:hover {
+  color: var(--primary);
+}
