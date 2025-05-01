@@ -1,8 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+
   
   :root {
     --primary: #2E7D32;
@@ -14,44 +10,52 @@
     --font: 'Segoe UI', Tahoma, sans-serif;
   }
 
-.main{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: center;
-    background: #2E7D32;
-    flex-direction: column;
-  }
+body{
+  background: #2E7D32;
+}
+main{
   
-  .text{
-    font-size: 45px;
-    color: #0f380c;
-    margin-bottom: 30px;
-  }
-  .paragrafa{
-    color:#000000;
-    margin-bottom: 50px;
-  }
-  .btn{
-    padding: 15px 55px;
-    background: #245527;
-    text-decoration: none;
-    font-size: 18px;
-    transition: all 0.5s;
-    color: #11740a;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-  
- .btn:hover{
-    border-radius: 16px;
-  }
-  
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: center;
 
- footer {
+  flex-direction: column;
+  font-family: Cal Sans;
+}
+
+
+main > h1#text{
+  font-size: 45px;
+  color: #0f380c;
+  margin-bottom: 30px;
+}
+main > p#paragrafo{
+  color:#000000;
+  margin-bottom: 50px;
+}
+
+main > a#btn{
+  padding: 15px 55px;
+  background: #245527;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.5s;
+  color: #9efd97;
+  border-radius: 16px;
+}
+
+main > #btn:hover{
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px, black);
+}
+
+
+
+footer {
     background: var(--secondary);
     text-align: center;
-    padding: 1rem 0;
+    padding: 10px;
     margin-top: 2rem;
     border-top: 3px solid var(--accent);
   }
@@ -82,4 +86,3 @@
   footer .social a:hover {
     color: var(--primary);
   }
-  
