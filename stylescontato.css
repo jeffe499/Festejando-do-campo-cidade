@@ -149,42 +149,6 @@ form button:hover{
   border-radius: 16px;
 }
 
-/*pag obg*/
-.main{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: center;
-  background: #2E7D32;
-  flex-direction: column;
-}
-
-.text{
-  font-size: 45px;
-  color: #0f380c;
-  margin-bottom: 30px;
-}
-.paragrafa{
-  color:#0f380c;
-  margin-bottom: 50px;
-}
-.btn{
-  padding: 15px 55px;
-  background: #245527;
-  text-decoration: none;
-  font-size: 18px;
-  transition: all 0.5s;
-}
-
-.btn:hover{
-  border-radius: 16px;
-}
-
-
-
-
-
-
 
 
  footer {
