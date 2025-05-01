@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --primary: #2E7D32;
+    --secondary: #FFF3E0;
+    --accent: #FFB300;
+    --text: #333;
+    --bg: #fff;
+    --font: 'Segoe UI', Tahoma, sans-serif;
+  }
+  :root {
+    --primary-color: #2E7D32;
+    --secondary-color: #FFF3E0;
+    --accent-color: #FFB300;
+    --text-color: #333;
+    --bg-color: #fff;
+    --font-color: 'Segoe UI', Tahoma, sans-serif;
+  }
+  
+  body {
+    font-family: var(--font-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  /* Cabeçalho */
+  header {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  .btn-menu {
+    background: none;
+    border: none;
+    color: var(--bg-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+  }
+  
+  /* Navegação */
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  nav a {
+    color: var(--bg-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: var(--accent-color);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+ section{
+    margin: 0 auto;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 45px;
+    width: 500px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+    background: #0f380c;
+ }
+ section h2{
+    color: #2E7D32;
+    font-size: 2.5rem;
+    margin: 2rem;
+ }
+
+ section form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+ }
+ form label{
+    color: #2E7D32;
+    font-size: 17px;
+    margin-bottom: 4px;
+ }
+ form input{
+    padding: 15px;
+    outline: none;
+    border: 0;
+    margin-bottom: 20px;
+    font-size: 15px;
+    transition: all 0.5s;
+ }
+
+form input:focus{
+    border-radius: 16px;
+}
+
+form textarea{
+    padding: 10px;
+    outline: none;
+    border: 0;
+    font-size: 15px;
+    margin-bottom: 30px;
+    transition: all 0.5s;
+}
+
+form textarea:focus{
+    border-radius: 16px;
+}
+
+form button{
+  padding: 15px;
+  cursor: point;
+  font-size: 16px;
+  background: transparent;
+  border: 2px solid #2E7D32;
+  color: #2E7D32;
+  transition: all 1s;
+  margin-bottom: 20px;
+}
+form button:hover{
+  background: #2E7D32;
+  color: #0f380c;
+  border-radius: 16px;
+}
+
+/*pag obg*/
+.main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: center;
+  background: #2E7D32;
+  flex-direction: column;
+}
+
+.text{
+  font-size: 45px;
+  color: #0f380c;
+  margin-bottom: 30px;
+}
+.paragrafa{
+  color:#0f380c;
+  margin-bottom: 50px;
+}
+.btn{
+  padding: 15px 55px;
+  background: #245527;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.5s;
+}
+
+.btn:hover{
+  border-radius: 16px;
+}
+
+
+
+
+
+
+
+
+ footer {
+    background: var(--secondary);
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    border-top: 3px solid var(--accent);
+  }
+  
+  footer p, footer a {
+    color: var(--text);
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    color: var(--primary);
+  }
+  
+  footer .social {
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  
+  footer .social a {
+    color: var(--text);
+    text-decoration: none;
+    margin: 0 0.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  footer .social a:hover {
+    color: var(--primary);
+  }
+  
