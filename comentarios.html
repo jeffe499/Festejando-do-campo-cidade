@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Festejando: Feed</title>
+  <link rel="stylesheet" href="stylescomentarios.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Festejando: do campo à cidade</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="cultura.html">História</a></li>
+          <li><a href="galeria.html">Galeria</a></li>
+          <li><a href="receitas.html">Receitas</a></li>
+          <li><a href="musica.html">Música</a></li>
+          <li><a href="sobre.html" class="active">Sobre</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="comentarios.html">Forum</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="feed-container">
+    <h1 style="color:#2e7d32;">Comentarios</h1>
+    <h2>Feed de Postagens</h2>
+    <div id="postsList" class="posts-list"></div>
+    <button id="newPostBtn" class="new-post-btn">＋</button>
+  </div>
+
+  <script>
+    document.getElementById('newPostBtn').addEventListener('click', () => {
+      window.location.href = 'publicar.html';
+    });
+  </script>
+  <script src="comentarios.js"></script>
+</body>
+</html>

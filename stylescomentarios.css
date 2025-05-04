@@ -1,0 +1,137 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #2E7D32;
+  --secondary: #FFF3E0;
+  --accent: #FFB300;
+  --text: #333;
+  --bg: #fff;
+  --font: 'Segoe UI', Tahoma, sans-serif;
+}
+:root {
+  --primary-color: #2E7D32;
+  --secondary-color: #FFF3E0;
+  --accent-color: #FFB300;
+  --text-color: #333;
+  --bg-color: #fff;
+  --font-color: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+  font-family: var(--font-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Cabeçalho */
+header {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+.btn-menu {
+  background: none;
+  border: none;
+  color: var(--bg-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+/* Navegação */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--bg-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.feed-container {
+  max-width: 800px;
+  margin: auto;
+  position: relative;
+}
+
+.feed-container h1 { margin-bottom: 5px; }
+.feed-container h2 { margin-bottom: 20px; }
+
+.post-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 6px solid #2e7d32;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.post-card img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-header h2 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.post-meta {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.new-post-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #2e7d32;
+  color: white;
+  font-size: 2em;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
