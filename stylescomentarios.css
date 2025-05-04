@@ -135,3 +135,34 @@ nav a:hover {
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
+
+/* Estilos do footer */
+footer {
+  background-color: var(--secondary);
+  color: var(--text);
+  padding: 1rem 0;
+  margin-top: 2rem;
+  border-top: 2px solid var(--accent);
+}
+
+footer p {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+footer .social {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+footer .social a {
+  color: var(--text);
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+footer .social a:hover {
+  color: var(--primary);
+}

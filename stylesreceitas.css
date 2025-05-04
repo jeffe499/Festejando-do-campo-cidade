@@ -1,21 +1,20 @@
-/* 
-  styles.css
-  Descrição: Estilos principais para o site "Festejando: do campo à cidade"
-  Autor: [Seu Nome]
-  Última modificação: 30/04/2025
-*/
-
-/* Reset e variáveis */
+/* 1. Reset global */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden; /* evita scroll horizontal indesejado */
+}
+
+/* 2. Variáveis de cor e fonte */
 :root {
   --primary: #2E7D32;
   --secondary: #FFF3E0;
   --accent: #FFB300;
+  --accent1: #174219;
   --text: #333;
   --bg: #fff;
   --font: 'Segoe UI', Tahoma, sans-serif;
@@ -34,11 +33,13 @@ body {
   padding: 1rem;
 }
 
+/* Cabeçalho */
 header {
   background-color: var(--primary);
   color: var(--bg);
   padding: 1rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 header h1 {
@@ -46,12 +47,12 @@ header h1 {
 }
 
 .btn-menu {
+  display: none;
   background: none;
   border: none;
   color: var(--bg);
   font-size: 1.5rem;
   cursor: pointer;
-  display: none;
 }
 
 /* Navegação */
@@ -69,24 +70,16 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--accent);
-}
-
-
-/* Botão de menu (hambúrguer) */
-.btn-menu {
-  display: none;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: var(--bg);
-  cursor: pointer;
+  color: var(--accent1);
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
   .btn-menu {
     display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
   }
 
   .nav-menu {
@@ -94,7 +87,7 @@ nav a:hover {
     flex-direction: column;
     background: var(--primary);
     position: absolute;
-    top: 70px;
+    top: 60px;
     left: 0;
     width: 100%;
   }
@@ -111,7 +104,13 @@ nav a:hover {
   }
 }
 
-footer {
+/* Footer full-width */
+.site-footer {
+  position: relative;
+  width: 100vw;          /* largura da viewport citeturn0MDN1 */
+  left: 50%;             /* move o canto esquerdo ao centro */
+  margin-left: -50vw;    /* puxa de volta até a borda esquerda */
+
   background-color: var(--secondary);
   color: var(--text);
   padding: 1.5rem 1rem;

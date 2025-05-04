@@ -39,8 +39,8 @@ body {
     align-items: center;
     padding: 10px 15px;
     margin-top: 5px;
-    background: #a5d6a7;
-    color: #1b5e20;
+    background: #2e7d32;
+    color: #fff;
     border-radius: 4px;
     cursor: pointer;
     width: fit-content;
@@ -92,4 +92,27 @@ body {
   button#publishBtn.enabled {
     opacity: 1;
   }
-  
+
+  a.button-voltar{
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: #2e7d32;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  a.button-voltar:hover{
+    background-color: #81c784;
+  }
+
+  a.button-voltar:focus{
+    outline: 2px solid #a5d6a7;
+    outline-offset: 2px;
+  }
+
