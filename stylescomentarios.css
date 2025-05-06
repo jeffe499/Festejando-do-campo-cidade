@@ -1,11 +1,4 @@
 
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 :root {
   --primary: #2E7D32;
   --secondary: #FFF3E0;
@@ -13,8 +6,6 @@
   --text: #333;
   --bg: #fff;
   --font: 'Segoe UI', Tahoma, sans-serif;
-}
-:root {
   --primary-color: #2E7D32;
   --secondary-color: #FFF3E0;
   --accent-color: #FFB300;
@@ -22,10 +13,12 @@
   --bg-color: #fff;
   --font-color: 'Segoe UI', Tahoma, sans-serif;
 }
-
 body {
+  background: #e8f5e9;
+  color: #1b5e20;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0; padding: 0;
   font-family: var(--font-color);
-  background: var(--bg-color);
   color: var(--text-color);
   line-height: 1.6;
 }
@@ -80,74 +73,86 @@ nav a:hover {
   padding: 0;
   box-sizing: border-box;
 }
+
 .feed-container {
   max-width: 800px;
-  margin: auto;
+  margin: 20px auto;
   position: relative;
 }
-
-.feed-container h1 { margin-bottom: 5px; }
-.feed-container h2 { margin-bottom: 20px; }
 
 .post-card {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
+  background: #fff;
   border-left: 6px solid #2e7d32;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  position: relative;
-}
-
-.post-card img {
-  max-width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
   border-radius: 4px;
+}
+.post-card img { max-width: 100%; border-radius: 4px; margin-top: 10px; }
+.post-header { display: flex; justify-content: space-between; }
+.post-meta { font-size: .85em; color: #555; }
+.post-body { margin: 10px 0; }
+
+.replies {
+  margin-top: 10px;
+  padding-left: 15px;
+  border-left: 2px solid #81c784;
+}
+.reply {
+  margin-bottom: 8px;
+}
+.reply strong { font-size: .9em; }
+.reply p { margin: 4px 0; }
+
+.reply-form {
   margin-top: 10px;
 }
-
-.post-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.reply-form input,
+.reply-form textarea {
+  width: 100%; margin-bottom: 5px; padding: 6px;
+  border: 1px solid #a5d6a7; border-radius: 4px;
+}
+.reply-form button {
+  background: #2e7d32; color: white;
+  border: none; padding: 6px 12px; border-radius: 4px;
+  cursor: pointer;
 }
 
-.post-header h2 {
-  margin: 0;
-  font-size: 1.2em;
+.pagination {
+  text-align: center; margin: 20px 0;
 }
-
-.post-meta {
-  font-size: 0.9em;
-  color: #555;
+.pagination button {
+  margin: 0 3px; padding: 6px 10px;
+  background: #fff; border: 1px solid #2e7d32;
+  border-radius: 4px; cursor: pointer;
+}
+.pagination button.active {
+  background: #2e7d32; color: #fff;
 }
 
 .new-post-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: #2e7d32;
-  color: white;
-  font-size: 2em;
-  border: none;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  position: fixed; bottom: 30px; right: 30px;
+  background: #2e7d32; color: white; font-size: 2em;
+  width: 60px; height: 60px; border: none; border-radius: 50%;
+  cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* Estilos do footer */
+
 footer {
-  background-color: var(--secondary);
-  color: var(--text);
+  background: var(--secondary);
+  text-align: center;
   padding: 1rem 0;
   margin-top: 2rem;
-  border-top: 2px solid var(--accent);
+  border-top: 3px solid var(--accent);
 }
 
-footer p {
-  text-align: center;
+footer p, footer a {
+  color: var(--text);
   font-size: 0.9rem;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--primary);
 }
 
 footer .social {

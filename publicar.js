@@ -1,14 +1,14 @@
-const nameInput      = document.getElementById('name');
-const emailInput     = document.getElementById('email');
-const bodyInput      = document.getElementById('body');
-const imageInput     = document.getElementById('image');
-const previewContainer = document.getElementById('previewContainer');
-const previewImage     = document.getElementById('previewImage');
-const removeImageBtn   = document.getElementById('removeImageBtn');
-const publishBtn     = document.getElementById('publishBtn');
+const nameInput       = document.getElementById('name');
+const emailInput      = document.getElementById('email');
+const bodyInput       = document.getElementById('body');
+const imageInput      = document.getElementById('image');
+const previewContainer= document.getElementById('previewContainer');
+const previewImage    = document.getElementById('previewImage');
+const removeImageBtn  = document.getElementById('removeImageBtn');
+const publishBtn      = document.getElementById('publishBtn');
 
 function updatePublishBtn() {
-  if (nameInput.value.trim() && emailInput.value.trim() && bodyInput.value.trim()) {
+  if (nameInput.value && emailInput.value && bodyInput.value) {
     publishBtn.disabled = false;
     publishBtn.classList.add('enabled');
   } else {
@@ -16,9 +16,8 @@ function updatePublishBtn() {
     publishBtn.classList.remove('enabled');
   }
 }
-[nameInput, emailInput, bodyInput].forEach(el => el.addEventListener('input', updatePublishBtn));
+[nameInput, emailInput, bodyInput].forEach(i => i.addEventListener('input', updatePublishBtn));
 
-// Mostrar preview ao selecionar imagem
 imageInput.addEventListener('change', () => {
   const file = imageInput.files[0];
   if (!file) return;
@@ -29,36 +28,29 @@ imageInput.addEventListener('change', () => {
   };
   reader.readAsDataURL(file);
 });
-
-// Remover imagem selecionada
 removeImageBtn.addEventListener('click', () => {
   imageInput.value = '';
   previewContainer.hidden = true;
 });
 
-// Submissão do formulário
 document.getElementById('postForm').addEventListener('submit', e => {
   e.preventDefault();
   const reader = new FileReader();
   reader.onload = () => {
-    const data = {
+    const post = {
+      id: Date.now(),
       name: nameInput.value.trim(),
       email: emailInput.value.trim(),
       body: bodyInput.value.trim(),
       image: reader.result || null,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
+      replies: []  // inicializa array de respostas
     };
-    const posts = JSON.parse(localStorage.getItem('postagens')) || [];
-    posts.unshift(data);
-    localStorage.setItem('postagens', JSON.stringify(posts));
-    e.target.reset();
-    previewContainer.hidden = true;
-    updatePublishBtn();
-    alert('Postagem publicada!');
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    posts.unshift(post);
+    localStorage.setItem('posts', JSON.stringify(posts));
+    window.location.href = 'comentarios.html';
   };
-  if (imageInput.files[0]) {
-    reader.readAsDataURL(imageInput.files[0]);
-  } else {
-    reader.onload();
-  }
+  if (imageInput.files[0]) reader.readAsDataURL(imageInput.files[0]);
+  else reader.onload();
 });
