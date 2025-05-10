@@ -5,39 +5,44 @@ const postsList = document.getElementById('postsList');
 const pagination = document.getElementById('pagination');
 const newPostBtn = document.getElementById('newPostBtn');
 
-newPostBtn.addEventListener('click', () => location.href = 'publicar.html');
+newPostBtn.addEventListener('click', () =>
+  window.location.href = 'publicar.html'
+);
 
-// carrega posts e inicializa
-function loadPosts() {
-  const posts = JSON.parse(localStorage.getItem('posts')) || [];
-  const totalPages = Math.ceil(posts.length / postsPerPage);
-  renderPagination(totalPages);
-  renderPage(posts, currentPage);
+// busca posts do Bin
+async function fetchPosts() {
+  const res = await fetch(`https://api.jsonbin.io/v3/b/SEU_BIN_ID_AQUI/latest`, {
+    headers: { 'X-Master-Key': 'SUA_X_MASTER_KEY_AQUI' }
+  });
+  const json = await res.json();
+  return json.record || [];
 }
 
 // renderiza paginação
-function renderPagination(total) {
+function renderPagination(totalPages) {
   pagination.innerHTML = '';
-  if (total <= 1) return;
-  for (let i = 1; i <= total; i++) {
+  if (totalPages <= 1) return;
+  for (let i = 1; i <= totalPages; i++) {
     const btn = document.createElement('button');
     btn.textContent = i;
     if (i === currentPage) btn.classList.add('active');
-    btn.addEventListener('click', () => {
+    btn.onclick = () => {
       currentPage = i;
       loadPosts();
-    });
+    };
     pagination.appendChild(btn);
   }
 }
 
-// renderiza uma página
-function renderPage(posts, page) {
-  postsList.innerHTML = '';
-  const start = (page - 1) * postsPerPage;
-  const slice = posts.slice(start, start + postsPerPage);
+// renderiza posts + replies
+async function loadPosts() {
+  const posts = await fetchPosts();
+  const totalPages = Math.ceil(posts.length / postsPerPage);
+  renderPagination(totalPages);
 
-  slice.forEach(post => {
+  postsList.innerHTML = '';
+  const start = (currentPage - 1) * postsPerPage;
+  posts.slice(start, start + postsPerPage).forEach(post => {
     const card = document.createElement('div');
     card.className = 'post-card';
     card.innerHTML = `
@@ -64,18 +69,28 @@ function renderPage(posts, page) {
     postsList.appendChild(card);
   });
 
-  // adiciona handlers de resposta
+  // attach reply handlers
   document.querySelectorAll('.reply-form').forEach(form => {
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
       const pid = Number(form.dataset.id);
       const name = form.rname.value.trim();
       const body = form.rbody.value.trim();
       if (!name || !body) return;
-      const posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+      // atualiza o Bin
+      const posts = await fetchPosts();
       const post = posts.find(p => p.id === pid);
       post.replies.push({ name, body, createdAt: new Date().toISOString() });
-      localStorage.setItem('posts', JSON.stringify(posts));
+
+      await fetch(`https://api.jsonbin.io/v3/b/SEU_BIN_ID_AQUI`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': 'SUA_X_MASTER_KEY_AQUI'
+        },
+        body: JSON.stringify(posts)
+      });
       loadPosts();
     });
   });
