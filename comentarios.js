@@ -1,24 +1,51 @@
+// comentarios.js
+
+// Quantos posts por página
 const postsPerPage = 10;
 let currentPage = 1;
 
-const postsList = document.getElementById('postsList');
+// Elementos do DOM
+const postsList  = document.getElementById('postsList');
 const pagination = document.getElementById('pagination');
 const newPostBtn = document.getElementById('newPostBtn');
 
-newPostBtn.addEventListener('click', () =>
-  window.location.href = 'publicar.html'
-);
+// Redireciona para criar postagem
+newPostBtn.addEventListener('click', () => {
+  window.location.href = 'publicar.html';
+});
 
-// busca posts do Bin
+// CONFIGURAÇÃO do JSONBin (substitua pelos seus valores)
+const BIN_ID  = '681fbdb78960c979a596eccf';
+const API_KEY = '$2a$10$kplpgtHvPKcUTXITnT2lV.ToAJpCEYzGQYSWD7qKfYL65ZrJH3Sni';
+const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+// 1) Busca todos os posts do Bin remoto
 async function fetchPosts() {
-  const res = await fetch(`https://api.jsonbin.io/v3/b/SEU_BIN_ID_AQUI/latest`, {
-    headers: { 'X-Master-Key': 'SUA_X_MASTER_KEY_AQUI' }
+  const res = await fetch(`${API_URL}/latest`, {
+    headers: { 'X-Master-Key': API_KEY }
   });
   const json = await res.json();
-  return json.record || [];
+  // normaliza para garantir que replies exista
+  const posts = (json.record || []).map(p => ({
+    ...p,
+    replies: Array.isArray(p.replies) ? p.replies : []
+  }));
+  return posts;
 }
 
-// renderiza paginação
+// 2) Salva (PUT) o array completo de posts/responses de volta no Bin
+async function savePosts(posts) {
+  await fetch(API_URL, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Master-Key': API_KEY
+    },
+    body: JSON.stringify(posts)
+  });
+}
+
+// 3) Gera os botões de paginação
 function renderPagination(totalPages) {
   pagination.innerHTML = '';
   if (totalPages <= 1) return;
@@ -26,15 +53,15 @@ function renderPagination(totalPages) {
     const btn = document.createElement('button');
     btn.textContent = i;
     if (i === currentPage) btn.classList.add('active');
-    btn.onclick = () => {
+    btn.addEventListener('click', () => {
       currentPage = i;
       loadPosts();
-    };
+    });
     pagination.appendChild(btn);
   }
 }
 
-// renderiza posts + replies
+// 4) Carrega e renderiza os posts da página atual
 async function loadPosts() {
   const posts = await fetchPosts();
   const totalPages = Math.ceil(posts.length / postsPerPage);
@@ -42,7 +69,9 @@ async function loadPosts() {
 
   postsList.innerHTML = '';
   const start = (currentPage - 1) * postsPerPage;
-  posts.slice(start, start + postsPerPage).forEach(post => {
+  const slice = posts.slice(start, start + postsPerPage);
+
+  slice.forEach(post => {
     const card = document.createElement('div');
     card.className = 'post-card';
     card.innerHTML = `
@@ -55,7 +84,8 @@ async function loadPosts() {
       <div class="replies" id="replies-${post.id}">
         ${post.replies.map(r => `
           <div class="reply">
-            <strong>${r.name}</strong> (${new Date(r.createdAt).toLocaleTimeString('pt-BR')}):
+            <strong>${r.name}</strong>
+            <span class="reply-meta">(${new Date(r.createdAt).toLocaleTimeString('pt-BR')}):</span>
             <p>${r.body}</p>
           </div>
         `).join('')}
@@ -69,31 +99,26 @@ async function loadPosts() {
     postsList.appendChild(card);
   });
 
-  // attach reply handlers
+  // 5) Vincula cada form de reply ao handler que salva a resposta
   document.querySelectorAll('.reply-form').forEach(form => {
     form.addEventListener('submit', async e => {
       e.preventDefault();
-      const pid = Number(form.dataset.id);
+      const pid  = Number(form.dataset.id);
       const name = form.rname.value.trim();
       const body = form.rbody.value.trim();
       if (!name || !body) return;
 
-      // atualiza o Bin
+      // busca posts, adiciona reply e salva de volta
       const posts = await fetchPosts();
-      const post = posts.find(p => p.id === pid);
+      const post  = posts.find(p => p.id === pid);
       post.replies.push({ name, body, createdAt: new Date().toISOString() });
+      await savePosts(posts);
 
-      await fetch(`https://api.jsonbin.io/v3/b/SEU_BIN_ID_AQUI`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Master-Key': 'SUA_X_MASTER_KEY_AQUI'
-        },
-        body: JSON.stringify(posts)
-      });
+      // recarrega o feed (mantém a mesma página)
       loadPosts();
     });
   });
 }
 
+// Inicia
 loadPosts();

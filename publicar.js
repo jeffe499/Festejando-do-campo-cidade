@@ -1,9 +1,11 @@
-// configurar seu Bin ID e API Key
+// publicar.js
+
+// Configurações do seu JSONBin
 const BIN_ID   = '681fbdb78960c979a596eccf';
 const API_KEY  = '$2a$10$kplpgtHvPKcUTXITnT2lV.ToAJpCEYzGQYSWD7qKfYL65ZrJH3Sni';
 const API_URL  = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
-// elementos do formulário
+// Elementos do form
 const nameInput       = document.getElementById('name');
 const emailInput      = document.getElementById('email');
 const bodyInput       = document.getElementById('body');
@@ -13,7 +15,7 @@ const previewImage    = document.getElementById('previewImage');
 const removeImageBtn  = document.getElementById('removeImageBtn');
 const publishBtn      = document.getElementById('publishBtn');
 
-// habilita/desabilita botão
+// Habilita/desabilita o botão Publicar
 function updatePublishBtn() {
   if (nameInput.value && emailInput.value && bodyInput.value) {
     publishBtn.disabled = false;
@@ -25,7 +27,7 @@ function updatePublishBtn() {
 }
 [nameInput, emailInput, bodyInput].forEach(i => i.addEventListener('input', updatePublishBtn));
 
-// preview de imagem
+// Preview da imagem
 imageInput.addEventListener('change', () => {
   const file = imageInput.files[0];
   if (!file) return;
@@ -41,16 +43,16 @@ removeImageBtn.addEventListener('click', () => {
   previewContainer.hidden = true;
 });
 
-// busca posts atuais do Bin
+// Busca os posts atuais do Bin
 async function fetchPosts() {
-  const res = await fetch(`${API_URL}/latest`, {
+  const res  = await fetch(`${API_URL}/latest`, {
     headers: { 'X-Master-Key': API_KEY }
   });
   const json = await res.json();
   return json.record || [];
 }
 
-// salva array completo de posts no Bin
+// Salva o array de posts no Bin
 async function savePosts(posts) {
   await fetch(API_URL, {
     method: 'PUT',
@@ -62,10 +64,9 @@ async function savePosts(posts) {
   });
 }
 
-// envio do formulário
+// Submissão do form
 document.getElementById('postForm').addEventListener('submit', async e => {
   e.preventDefault();
-  // lê imagem em base64
   const reader = new FileReader();
   reader.onload = async () => {
     const newPost = {
@@ -75,13 +76,12 @@ document.getElementById('postForm').addEventListener('submit', async e => {
       body:  bodyInput.value.trim(),
       image: reader.result || null,
       createdAt: new Date().toISOString(),
-      replies: []
+      replies: []  // array vazio para respostas
     };
-    // atualiza Bin
+    // adiciona ao início do array
     const posts = await fetchPosts();
     posts.unshift(newPost);
     await savePosts(posts);
-    // volta ao feed
     window.location.href = 'comentarios.html';
   };
   if (imageInput.files[0]) reader.readAsDataURL(imageInput.files[0]);
