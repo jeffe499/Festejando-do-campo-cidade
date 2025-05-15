@@ -1,4 +1,3 @@
-
 :root {
   --primary: #2E7D32;
   --secondary: #FFF3E0;
@@ -13,13 +12,17 @@
   --bg-color: #fff;
   --font-color: 'Segoe UI', Tahoma, sans-serif;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background: #e8f5e9;
-  color: #1b5e20;
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0; padding: 0;
-  font-family: var(--font-color);
   color: var(--text-color);
+  font-family: var(--font-color);
   line-height: 1.6;
 }
 
@@ -29,7 +32,6 @@ body {
   padding: 1rem;
 }
 
-/* Cabeçalho */
 header {
   background-color: var(--primary-color);
   color: var(--bg-color);
@@ -50,7 +52,6 @@ header h1 {
   display: none;
 }
 
-/* Navegação */
 nav ul {
   list-style: none;
   display: flex;
@@ -68,12 +69,6 @@ nav a:hover {
   color: var(--accent-color);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .feed-container {
   max-width: 800px;
   margin: 20px auto;
@@ -87,55 +82,103 @@ nav a:hover {
   margin-bottom: 20px;
   border-radius: 4px;
 }
-.post-card img { max-width: 100%; border-radius: 4px; margin-top: 10px; }
-.post-header { display: flex; justify-content: space-between; }
-.post-meta { font-size: .85em; color: #555; }
-.post-body { margin: 10px 0; }
+
+.post-card img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-meta {
+  font-size: 0.85em;
+  color: #555;
+}
+
+.post-body {
+  margin: 10px 0;
+}
 
 .replies {
   margin-top: 10px;
   padding-left: 15px;
   border-left: 2px solid #81c784;
 }
+
 .reply {
+  display: flex;
+  align-items: center;
   margin-bottom: 8px;
 }
-.reply strong { font-size: .9em; }
-.reply p { margin: 4px 0; }
+
+.reply strong {
+  font-size: 0.9em;
+}
+
+.reply p {
+  margin: 4px 0;
+}
 
 .reply-form {
   margin-top: 10px;
 }
+
 .reply-form input,
 .reply-form textarea {
-  width: 100%; margin-bottom: 5px; padding: 6px;
-  border: 1px solid #a5d6a7; border-radius: 4px;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 6px;
+  border: 1px solid #a5d6a7;
+  border-radius: 4px;
 }
+
 .reply-form button {
-  background: #2e7d32; color: white;
-  border: none; padding: 6px 12px; border-radius: 4px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
 .pagination {
-  text-align: center; margin: 20px 0;
+  text-align: center;
+  margin: 20px 0;
 }
+
 .pagination button {
-  margin: 0 3px; padding: 6px 10px;
-  background: #fff; border: 1px solid #2e7d32;
-  border-radius: 4px; cursor: pointer;
+  margin: 0 3px;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1px solid #2e7d32;
+  border-radius: 4px;
+  cursor: pointer;
 }
+
 .pagination button.active {
-  background: #2e7d32; color: #fff;
+  background: #2e7d32;
+  color: #fff;
 }
 
 .new-post-btn {
-  position: fixed; bottom: 30px; right: 30px;
-  background: #2e7d32; color: white; font-size: 2em;
-  width: 60px; height: 60px; border: none; border-radius: 50%;
-  cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #2e7d32;
+  color: white;
+  font-size: 2em;
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
-
 
 footer {
   background: var(--secondary);
@@ -145,7 +188,8 @@ footer {
   border-top: 3px solid var(--accent);
 }
 
-footer p, footer a {
+footer p,
+footer a {
   color: var(--text);
   font-size: 0.9rem;
   text-decoration: none;
@@ -170,4 +214,24 @@ footer .social a {
 
 footer .social a:hover {
   color: var(--primary);
+}
+
+.comment-avatar,
+.reply-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.delete-btn {
+  margin-left: auto;
+  background: #e57373;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
 }

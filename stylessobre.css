@@ -1,123 +1,114 @@
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  :root {
-    --primary: #2E7D32;
-    --secondary: #FFF3E0;
-    --accent: #FFB300;
-    --text: #333;
-    --bg: #fff;
-    --font: 'Segoe UI', Tahoma, sans-serif;
-  }
-  
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  
- .conteiner section h3 {
-    border-bottom: 2px solid var(--accent1);
-    padding-bottom: 0.25rem;
- }
- 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  /* Cabeçalho */
-  header {
-    background-color: var(--primary);
-    color: var(--bg);
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  header h1 {
-    font-size: 2rem;
-  }
-  
-  .btn-menu {
-    background: none;
-    border: none;
-    color: var(--bg);
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: none;
-  }
-  
-  /* Navegação */
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  nav a {
-    color: var(--bg);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  nav a:hover {
-    color: var(--accent);
-  }
-  
-  /* Título da página */
-  main h2 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary);
-  }
-  
-  main p {
-    margin-bottom: 1.5rem;
-  }
-  
- 
-  
-  /* Footer */
-  footer {
-    background: var(--secondary);
-    text-align: center;
-    padding: 1rem 0;
-    margin-top: 2rem;
-    border-top: 3px solid var(--accent);
-  }
-  
-  footer p, footer a {
-    color: var(--text);
-    font-size: 0.9rem;
-    text-decoration: none;
-  }
-  
-  footer a:hover {
-    color: var(--primary);
-  }
-  
-  footer .social {
-    text-align: center;
-    margin-top: 0.5rem;
-  }
-  
-  footer .social a {
-    color: var(--text);
-    text-decoration: none;
-    margin: 0 0.5rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  footer .social a:hover {
-    color: var(--primary);
-  }
-  
+:root {
+  --primary: #2E7D32;
+  --secondary: #FFF3E0;
+  --accent: #FFB300;
+  --text: #333;
+  --bg: #fff;
+  --font: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container section h3 {
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.25rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+header {
+  background-color: var(--primary);
+  color: var(--bg);
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+.btn-menu {
+  background: none;
+  border: none;
+  color: var(--bg);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--bg);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+main h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+main p {
+  margin-bottom: 1.5rem;
+}
+
+footer {
+  background: var(--secondary);
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  border-top: 3px solid var(--accent);
+}
+
+footer p, footer a {
+  color: var(--text);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--primary);
+}
+
+footer .social {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+footer .social a {
+  color: var(--text);
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+footer .social a:hover {
+  color: var(--primary);
+}

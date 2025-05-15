@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Festejando – Login</title>
+  <link rel="stylesheet" href="stylesperfil.css" />
+</head>
+<body>
+  <main class="auth-container" role="main">
+    <h1>Entrar</h1>
+    <form id="loginForm" novalidate>
+      <label for="email">E-mail</label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email"
+        required 
+        autocomplete="username" 
+        placeholder="Digite seu e-mail" 
+        aria-describedby="emailHelp" 
+      />
+      <small id="emailHelp" class="sr-only">Informe seu e-mail cadastrado.</small>
+
+      <label for="password">Senha</label>
+      <input 
+        type="password" 
+        id="password" 
+        name="password" 
+        required 
+        autocomplete="current-password" 
+        placeholder="Digite sua senha" 
+        aria-describedby="passwordHelp" 
+      />
+      <small id="passwordHelp" class="sr-only">Informe sua senha.</small>
+
+      <button type="submit">Login</button>
+    </form>
+    <p>Não tem conta? <a href="signup.html">Cadastrar</a></p>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>

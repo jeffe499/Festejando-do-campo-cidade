@@ -1,174 +1,146 @@
-/* 
-  stylesmusica.css
-  Descrição: Estilos para a seção de músicas do site "Festejando: do campo à cidade"
-  Autor: [Seu Nome]
-  Última modificação: 30/04/2025
-*/
-
-/* Reset e variáveis */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  :root {
-    --primary: #2E7D32;
-    --secondary: #FFF3E0;
-    --accent: #FFB300;
-    --accent1: #174219;
-    --text: #333;
-    --bg: #fff;
-    --font: 'Segoe UI', Tahoma, sans-serif;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  /* Cabeçalho */
-  header {
-    background-color: var(--primary);
-    color: var(--bg);
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  header h1 {
-    font-size: 2rem;
-  }
-  
-  .btn-menu {
-    background: none;
-    border: none;
-    color: var(--bg);
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: none;
-  }
-  
-  /* Navegação */
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  nav a {
-    color: var(--bg);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  nav a:hover {
-    color: var(--accent1);
-  }
-  
-  
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  /* Estilos para a seção de músicas */
-  .playlist {
-    margin-bottom: 2rem;
-  }
-  
+:root {
+  --primary: #2E7D32;
+  --secondary: #FFF3E0;
+  --accent: #FFB300;
+  --accent1: #174219;
+  --text: #333;
+  --bg: #fff;
+  --font: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+header {
+  background-color: var(--primary);
+  color: var(--bg);
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+.btn-menu {
+  background: none;
+  border: none;
+  color: var(--bg);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--bg);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent1);
+}
+
+.playlist {
+  margin-bottom: 2rem;
+}
+
+.playlist h3 {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent1);
+  padding-bottom: 0.25rem;
+}
+
+.playlist ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.playlist li {
+  margin-bottom: 0.5rem;
+}
+
+.playlist a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.playlist a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
   .playlist h3 {
-    font-size: 1.5rem;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-    border-bottom: 2px solid var(--accent1);
-    padding-bottom: 0.25rem;
-  }
-  
-  .playlist ul {
-    list-style: none;
-    padding-left: 1rem;
-  }
-  
-  .playlist li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .playlist a {
-    color: var(--text);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .playlist a:hover {
-    color: var(--accent);
-  }
-  
-  /* Responsividade */
-  @media (max-width: 768px) {
-    .playlist h3 {
-      font-size: 1.25rem;
-    }
-  
-    .playlist ul {
-      padding-left: 0.5rem;
-    }
+    font-size: 1.25rem;
   }
 
-  footer {
-    background-color: var(--secondary);
-    color: var(--text);
-    padding: 1.5rem 1rem;
-    margin-top: 2rem;
-    border-top: 3px solid var(--accent);
+  .playlist ul {
+    padding-left: 0.5rem;
   }
-  
-  footer .container {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  footer p {
-    font-size: 0.9rem;
-    text-align: center;
-  }
-  
-  footer .social {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  footer .social a {
-    color: var(--text);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  footer .social a:hover {
-    color: var(--primary);
-  }
-  
-  
+}
+
+footer {
+  background-color: var(--secondary);
+  color: var(--text);
+  padding: 1.5rem 1rem;
+  margin-top: 2rem;
+  border-top: 3px solid var(--accent);
+}
+
+footer .container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+footer p {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+footer .social {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+footer .social a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+footer .social a:hover {
+  color: var(--primary);
+}

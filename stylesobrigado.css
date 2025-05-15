@@ -1,41 +1,38 @@
+:root {
+  --primary: #2E7D32;
+  --secondary: #FFF3E0;
+  --accent: #FFB300;
+  --accent1: #174219;
+  --text: #333;
+  --bg: #fff;
+  --font: 'Segoe UI', Tahoma, sans-serif;
+}
 
-  
-  :root {
-    --primary: #2E7D32;
-    --secondary: #FFF3E0;
-    --accent: #FFB300;
-    --accent1: #174219;
-    --text: #333;
-    --bg: #fff;
-    --font: 'Segoe UI', Tahoma, sans-serif;
-  }
-
-body{
+body {
   background: #2E7D32;
 }
-main{
-  
+
+main {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: center;
-
+  min-height: 100vh;
   flex-direction: column;
-  font-family: Cal Sans;
+  font-family: 'Cal Sans', sans-serif;
 }
 
-
-main > h1#text{
+main > h1#text {
   font-size: 45px;
   color: #0f380c;
   margin-bottom: 30px;
 }
-main > p#paragrafo{
-  color:#000000;
+
+main > p#paragrafo {
+  color: #000;
   margin-bottom: 50px;
 }
 
-main > a#btn{
+main > a#btn {
   padding: 15px 55px;
   background: #245527;
   text-decoration: none;
@@ -45,44 +42,43 @@ main > a#btn{
   border-radius: 16px;
 }
 
-main > #btn:hover{
+main > a#btn:hover {
   transform: scale(1.1);
-  filter: drop-shadow(0 0 5px, black);
+  filter: drop-shadow(0 0 5px black);
 }
 
-
-
 footer {
-    background: var(--secondary);
-    text-align: center;
-    padding: 10px;
-    margin-top: 2rem;
-    border-top: 3px solid var(--accent);
-  }
-  
-  footer p, footer a {
-    color: var(--text);
-    font-size: 0.9rem;
-    text-decoration: none;
-  }
-  
-  footer a:hover {
-    color: var(--primary);
-  }
-  
-  footer .social {
-    text-align: center;
-    margin-top: 0.5rem;
-  }
-  
-  footer .social a {
-    color: var(--text);
-    text-decoration: none;
-    margin: 0 0.5rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  footer .social a:hover {
-    color: var(--primary);
-  }
+  background: var(--secondary);
+  text-align: center;
+  padding: 10px;
+  margin-top: 2rem;
+  border-top: 3px solid var(--accent);
+}
+
+footer p,
+footer a {
+  color: var(--text);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--primary);
+}
+
+footer .social {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+footer .social a {
+  color: var(--text);
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+footer .social a:hover {
+  color: var(--primary);
+}

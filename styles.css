@@ -1,4 +1,3 @@
-/* Reset e variáveis */
 * {
   margin: 0;
   padding: 0;
@@ -27,7 +26,6 @@ body {
   padding: 1rem;
 }
 
-/* Cabeçalho */
 header {
   background-color: var(--primary-color);
   color: var(--bg-color);
@@ -48,7 +46,6 @@ header h1 {
   display: none;
 }
 
-/* Navegação */
 nav ul {
   list-style: none;
   display: flex;
@@ -66,13 +63,6 @@ nav a:hover {
   color: var(--accent-color);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Hero, conteúdo, seções */
 #hero {
   position: relative;
   overflow: hidden;
@@ -103,7 +93,6 @@ nav a:hover {
   font-size: 1.2rem;
 }
 
-/* Rodapé */
 footer {
   background-color: var(--secondary-color);
   color: var(--text-color);
@@ -133,7 +122,6 @@ footer .social a:hover {
   color: var(--primary-color);
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   .btn-menu {
     display: block;

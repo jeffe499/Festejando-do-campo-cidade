@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <title>Festejando: do campo à cidade</title>
-        <link rel="stylesheet" href="stylescontato.css" />
-      </head>
-      <body>
-        <header>
-          <div class="container">
-            <h1>Festejando: do campo à cidade</h1>
-           <nav>
-              <ul>
-                  <li><a href="index.html">Início</a></li>
-                  <li><a href="cultura.html">História</a></li>
-                  <li><a href="galeria.html">Galeria</a></li>
-                  <li><a href="receitas.html">Receitas</a></li>
-                  <li><a href="musica.html">Música</a></li>
-                  <li><a href="sobre.html">Sobre</a></li>
-                  <li><a href="contato.html">Contato</a></li>
-                  <li><a href="comentarios.html">Forum</a></li>
-                </ul>
-            </nav>
-          </div>
-        </header>
-  <br><br>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Festejando: Conectando Pessoas, Compartilhando Ideias</title>
+  <link rel="stylesheet" href="stylescontato.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Festejando: Conectando Pessoas, Compartilhando Ideias</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="cultura.html">História</a></li>
+          <li><a href="galeria.html">Galeria</a></li>
+          <li><a href="receitas.html">Receitas</a></li>
+          <li><a href="musica.html">Música</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="comentarios.html">Fórum</a></li>
+          <li><a href="profile.html">Perfil</a></li>
+          <li><a href="login.html" id="logoutLink">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <section>
-    <h2>Contato</h2>
-    <form action="https://api.staticforms.xyz/submit" method="post">
-      <label>Nome</label>
-      <input type="text" name="name" placeholder="Digite seu nome" autocomplete="off" required>
-      <label>Email</label>
-      <input type="email" name="email" placeholder="Digite seu email" autocomplete="off" required>
-      <label>Mensagem</label>
-      <textarea name="message" cols="30" rows="10" placeholder="Digite sua mensagem" required></textarea>
-      <button type="submit">Enviar</button>
+  <main>
+    <section>
+      <h2>Contato</h2>
+      <form action="https://api.staticforms.xyz/submit" method="post">
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" placeholder="Digite seu nome" autocomplete="off" required />
 
-      <input type="hidden" name="apiKey" value="sf_2eml489jfj3gbm83h054chn4">
-      <input type="hidden" name="redirectTo" value="https://jeffe499.github.io/Festejando-do-campo-cidade/obrigado.html">
-    </form>
-  </section>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Digite seu email" autocomplete="off" required />
+
+        <label for="message">Mensagem</label>
+        <textarea id="message" name="message" cols="30" rows="10" placeholder="Digite sua mensagem" required></textarea>
+
+        <button type="submit">Enviar</button>
+
+        <input type="hidden" name="apiKey" value="sf_2eml489jfj3gbm83h054chn4" />
+        <input type="hidden" name="redirectTo" value="https://jeffe499.github.io/Festejando-do-campo-cidade/obrigado.html" />
+      </form>
+    </section>
+  </main>
+
   <footer>
     <div class="container">
-      <p>&copy; 2025 Festejando. Todos os direitos reservados.</p>
-      <div class="social">
-        <a href="#">Instagram</a> |
-        <a href="#">Facebook</a> |
-        <a href="#">YouTube</a>
-      </div>
+      <p>&copy; 2025 Festejando, site criado sem fins lucrativos por Jefferson Dias Kreiner.</p>
     </div>
   </footer>
-
 
   <script src="scripts.js"></script>
 </body>
