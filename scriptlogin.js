@@ -19,7 +19,7 @@ formLogin.addEventListener('submit', async e => {
     const user = users.find(u => u.email === email && u.password === hash(pass));
     if (!user) return alert('E-mail ou senha incorretos.');
     sessionStorage.setItem('loggedEmail', user.email);
-    window.location.href = 'comentarios.html';
+    window.location.href = 'indexcomentarios.html';
   } catch {
     alert('Falha na autenticação. Tente novamente mais tarde.');
   }

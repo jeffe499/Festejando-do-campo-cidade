@@ -281,6 +281,35 @@ footer p {
   }
 }
 
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+  .menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--light-color);
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition);
+  }
+  .menu.menu--open {
+    max-height: 400px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .menu ul {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
+
+
 /* Estilo base do container */
 #main.container {
   max-width: 900px;

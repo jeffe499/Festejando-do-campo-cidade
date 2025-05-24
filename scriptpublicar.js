@@ -97,7 +97,7 @@ formPost.addEventListener('submit', async e => {
   const author = sessionStorage.getItem('loggedEmail');
   if (!author) {
     alert('Você precisa estar logado para publicar.');
-    return window.location.href = 'login.html';
+    return window.location.href = 'indexlogin.html';
   }
 
   try {
@@ -110,7 +110,7 @@ formPost.addEventListener('submit', async e => {
       replies: []
     });
     await savePosts(posts);
-    window.location.href = 'comentarios.html';
+    window.location.href = 'indexcomentarios.html';
   } catch (err) {
     console.error('Erro ao publicar:', err);
     alert('Ocorreu um erro ao publicar. Veja o console para mais detalhes.');

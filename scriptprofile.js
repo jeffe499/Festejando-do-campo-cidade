@@ -25,7 +25,7 @@ const updateSaveButton = () => {
 
 async function loadProfile() {
   const email = sessionStorage.getItem('loggedEmail');
-  if (!email) return window.location.href = 'login.html';
+  if (!email) return window.location.href = 'indexlogin.html';
   try {
     const res = await fetch(`${PROFILE_API_URL}/latest`, { headers: { 'X-Master-Key': API_KEY } });
     const { record = [] } = await res.json();
@@ -54,7 +54,7 @@ formProf.addEventListener('input', updateSaveButton);
 
 logoutBtn.addEventListener('click', () => {
   sessionStorage.clear();
-  window.location.href = 'login.html';
+  window.location.href = 'indexlogin.html';
 });
 
 formProf.addEventListener('submit', async e => {

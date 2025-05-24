@@ -44,5 +44,5 @@ form.addEventListener('submit', async e => {
   });
   await saveUsers(users);
   alert('Conta criada com sucesso!');
-  window.location.href = 'login.html';
+  window.location.href = 'indexlogin.html';
 });
