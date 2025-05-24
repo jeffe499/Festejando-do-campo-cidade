@@ -1,0 +1,86 @@
+// === Controles de acessibilidade ===
+const btnContrast      = document.getElementById('btn-contrast');
+const btnFontIncrease  = document.getElementById('btn-font-increase');
+const btnFontDecrease  = document.getElementById('btn-font-decrease');
+const btnReset         = document.getElementById('btn-reset');
+
+// Carrega preferências
+if (localStorage.getItem('darkMode') === 'enabled') {
+  document.body.classList.add('dark-mode');
+}
+const fontPref = localStorage.getItem('fontSize');
+if (fontPref === 'large') {
+  document.documentElement.classList.add('large-font');
+} else if (fontPref === 'small') {
+  document.documentElement.classList.add('small-font');
+}
+
+// Alterna modo claro/escuro
+btnContrast.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('darkMode',
+    document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled'
+  );
+});
+
+// Ajuste de fonte
+btnFontIncrease.addEventListener('click', () => {
+  document.documentElement.classList.remove('small-font');
+  document.documentElement.classList.toggle('large-font');
+  localStorage.setItem('fontSize',
+    document.documentElement.classList.contains('large-font') ? 'large' : 'normal'
+  );
+});
+btnFontDecrease.addEventListener('click', () => {
+  document.documentElement.classList.remove('large-font');
+  document.documentElement.classList.toggle('small-font');
+  localStorage.setItem('fontSize',
+    document.documentElement.classList.contains('small-font') ? 'small' : 'normal'
+  );
+});
+
+// Redefine preferências
+btnReset.addEventListener('click', () => {
+  document.body.classList.remove('dark-mode');
+  document.documentElement.classList.remove('small-font','large-font');
+  localStorage.removeItem('darkMode');
+  localStorage.removeItem('fontSize');
+});
+
+// === Menu mobile toggle ===
+const navToggle = document.querySelector('.nav-toggle');
+const menu      = document.querySelector('.menu');
+const menuLinks = document.querySelectorAll('.menu a');
+
+navToggle.addEventListener('click', () => {
+  menu.classList.toggle('menu--open');
+  navToggle.classList.toggle('nav-toggle--open');
+});
+
+menuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    menu.classList.remove('menu--open');
+    navToggle.classList.remove('nav-toggle--open');
+  });
+});
+
+// === Validação básica de formulário ===
+const form = document.getElementById('form-contato');
+if (form) {
+  form.addEventListener('submit', e => {
+    let valid = true;
+    ['name','email','message'].forEach(name => {
+      const field = form.querySelector(`[name="${name}"]`);
+      if (!field.value.trim()) {
+        field.classList.add('error');
+        valid = false;
+      } else {
+        field.classList.remove('error');
+      }
+    });
+    if (!valid) {
+      e.preventDefault();
+      alert('Por favor, preencha todos os campos.');
+    }
+  });
+}

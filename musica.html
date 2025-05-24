@@ -7,11 +7,25 @@
   <link rel="stylesheet" href="stylesmusicas.css" />
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Festejando: Conectando Pessoas, Compartilhando Ideias</h1>
-      <nav>
-        <ul class="nav-menu">
+  <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo"><a href="index.html">Festejando</a></h1>
+
+      <div class="accessibility-controls">
+        <button id="btn-contrast" aria-label="Alternar modo claro/escuro">🌓</button>
+        <button id="btn-font-decrease" aria-label="Diminuir fonte">A-</button>
+        <button id="btn-font-increase" aria-label="Aumentar fonte">A+</button>
+        <button id="btn-reset" aria-label="Redefinir preferências">⭯</button>
+      </div>
+
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="menu" aria-label="Menu principal">
+        <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="cultura.html">História</a></li>
           <li><a href="galeria.html">Galeria</a></li>
@@ -21,52 +35,50 @@
           <li><a href="contato.html">Contato</a></li>
           <li><a href="comentarios.html">Fórum</a></li>
           <li><a href="profile.html">Perfil</a></li>
-          <li><a href="login.html" id="logoutLink">Logout</a></li>
         </ul>
       </nav>
-      <button class="btn-menu">&#9776;</button>
     </div>
   </header>
 
-  <main class="container">
+  <main id="main" class="container">
     <h2>Música e Dança</h2>
     <p>Explore os ritmos que animam as festas no campo e na cidade, do tradicional ao moderno.</p>
 
     <section class="playlist">
       <h3>🎶 Forró e Sertanejo</h3>
       <ul>
-        <li><a href="https://www.youtube.com/watch?v=zIy3EwyBBI0" target="_blank" rel="noopener noreferrer">“Asa Branca” – Luiz Gonzaga</a></li>
-        <li><a href="https://www.youtube.com/watch?v=ePjtnSPFWK8" target="_blank" rel="noopener noreferrer">“Evidências” – Chitãozinho &amp; Xororó</a></li>
-        <li><a href="https://www.youtube.com/watch?v=aup_ZeTHtcI" target="_blank" rel="noopener noreferrer">“Romaria” – Renato Teixeira</a></li>
-        <li><a href="https://www.youtube.com/watch?v=IAWkTqqTZOw" target="_blank" rel="noopener noreferrer">“Pagode Russo” – Luiz Gonzaga</a></li>
+        <li><a href="https://www.youtube.com/watch?v=zIy3EwyBBI0" target="_blank" rel="noopener">“Asa Branca” – Luiz Gonzaga</a></li>
+        <li><a href="https://www.youtube.com/watch?v=ePjtnSPFWK8" target="_blank" rel="noopener">“Evidências” – Chitãozinho &amp; Xororó</a></li>
+        <li><a href="https://www.youtube.com/watch?v=aup_ZeTHtcI" target="_blank" rel="noopener">“Romaria” – Renato Teixeira</a></li>
+        <li><a href="https://www.youtube.com/watch?v=IAWkTqqTZOw" target="_blank" rel="noopener">“Pagode Russo” – Luiz Gonzaga</a></li>
       </ul>
     </section>
 
     <section class="playlist">
       <h3>🎧 Funk e Eletrônica</h3>
       <ul>
-        <li><a href="https://www.youtube.com/watch?v=Xp-dKdSUuLk" target="_blank" rel="noopener noreferrer">“Você Partiu Meu Coração” – Nego do Borel feat. Anitta &amp; Wesley Safadão</a></li>
-        <li><a href="https://www.youtube.com/watch?v=JVpTp8IHdEg" target="_blank" rel="noopener noreferrer">“Hear Me Now” – Alok, Bruno Martini feat. Zeeba</a></li>
-        <li><a href="https://www.youtube.com/watch?v=KWjV25q34Hw" target="_blank" rel="noopener noreferrer">“Piece of Your Heart” – Meduza</a></li>
+        <li><a href="https://www.youtube.com/watch?v=Xp-dKdSUuLk" target="_blank" rel="noopener">“Você Partiu Meu Coração” – Nego do Borel feat. Anitta &amp; Wesley Safadão</a></li>
+        <li><a href="https://www.youtube.com/watch?v=JVpTp8IHdEg" target="_blank" rel="noopener">“Hear Me Now” – Alok, Bruno Martini feat. Zeeba</a></li>
+        <li><a href="https://www.youtube.com/watch?v=KWjV25q34Hw" target="_blank" rel="noopener">“Piece of Your Heart” – Meduza</a></li>
       </ul>
     </section>
 
     <section class="playlist">
       <h3>🪗 Cultura Popular Brasileira</h3>
       <ul>
-        <li><a href="https://www.youtube.com/watch?v=q67-GePO2Lw" target="_blank" rel="noopener noreferrer">“Olha pro Céu” – Dominguinhos</a></li>
-        <li><a href="https://www.youtube.com/watch?v=3ueru3eELi4" target="_blank" rel="noopener noreferrer">“Canto de Ossanha” – Baden Powell e Vinicius de Moraes</a></li>
-        <li><a href="https://www.youtube.com/watch?v=n8QJrkIghaY" target="_blank" rel="noopener noreferrer">“Maracatu Atômico” – Chico Science &amp; Nação Zumbi</a></li>
+        <li><a href="https://www.youtube.com/watch?v=q67-GePO2Lw" target="_blank" rel="noopener">“Olha pro Céu” – Dominguinhos</a></li>
+        <li><a href="https://www.youtube.com/watch?v=3ueru3eELi4" target="_blank" rel="noopener">“Canto de Ossanha” – Baden Powell e Vinicius de Moraes</a></li>
+        <li><a href="https://www.youtube.com/watch?v=n8QJrkIghaY" target="_blank" rel="noopener">“Maracatu Atômico” – Chico Science &amp; Nação Zumbi</a></li>
       </ul>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Festejando, site criado sem fins lucrativos por Jefferson Dias Kreiner.</p>
+      <p>&copy; 2025 Festejando, site criado sem fins não comerciais por Jefferson Dias Kreiner.</p>
     </div>
   </footer>
 
-  <script src="scripts.js"></script>
+  <script src="musica.js"></script>
 </body>
 </html>

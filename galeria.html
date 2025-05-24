@@ -7,10 +7,24 @@
   <link rel="stylesheet" href="stylesgaleria.css" />
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Festejando: Conectando Pessoas, Compartilhando Ideias</h1>
-      <nav aria-label="Menu principal">
+  <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo"><a href="index.html">Festejando</a></h1>
+
+      <div class="accessibility-controls">
+        <button id="btn-contrast" aria-label="Alternar modo claro/escuro">🌓</button>
+        <button id="btn-font-decrease" aria-label="Diminuir fonte">A-</button>
+        <button id="btn-font-increase" aria-label="Aumentar fonte">A+</button>
+        <button id="btn-reset" aria-label="Redefinir preferências">⭯</button>
+      </div>
+
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="menu" aria-label="Menu principal">
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="cultura.html">História</a></li>
@@ -21,13 +35,12 @@
           <li><a href="contato.html">Contato</a></li>
           <li><a href="comentarios.html">Fórum</a></li>
           <li><a href="profile.html">Perfil</a></li>
-          <li><a href="login.html" id="logoutLink">Logout</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="container">
+  <main id="main" class="container">
     <h2>Galeria de Fotos e Vídeos</h2>
     <div class="galeria">
       <div class="item">
@@ -39,13 +52,13 @@
       <!-- Adicione mais imagens ou vídeos abaixo -->
     </div>
   </main>
-
+  <br>  <br>
   <footer>
     <div class="container">
       <p>&copy; 2025 Festejando, site criado sem fins lucrativos por Jefferson Dias Kreiner.</p>
     </div>
   </footer>
 
-  <script src="scripts.js"></script>
+  <script src="galeria.js"></script>
 </body>
 </html>

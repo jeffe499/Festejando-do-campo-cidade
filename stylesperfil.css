@@ -1,78 +1,209 @@
+/* stylesperfil.css */
+
+/* Reset e variáveis */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
-  --primary: #2E7D32;
-  --secondary: #509963;
-  --accent: #FFB300;
-  --text: #333;
-  --bg: #fff;
-  --font: 'Segoe UI', Tahoma, sans-serif;
+  --primary-color: #A4C639;
+  --dark-color: #333;
+  --light-color: #fff;
+  --transition: 0.3s ease;
+  --font-size-base: 1rem;
+}
+
+/* Global */
+html {
+  scroll-behavior: smooth;
+  font-size: var(--font-size-base);
 }
 
 body {
-  background: var(--secondary);
-  color: var(--primary);
-  font-family: var(--font);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--dark-color);
+  background: var(--light-color);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition), font-size var(--transition);
 }
 
+body.dark-mode {
+  background: var(--dark-color);
+  color: var(--light-color);
+}
+
+/* Font sizing */
+.large-font { font-size: 1.125rem; }
+.small-font { font-size: 0.875rem; }
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-color);
+  color: var(--light-color);
+  padding: 8px;
+  z-index: 100;
+  transition: top var(--transition);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Header */
+.site-header {
+  background-color: var(--light-color);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.logo a {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* Accessibility controls */
+.accessibility-controls button {
+  margin-right: 0.5rem;
+  background: none;
+  border: 1px solid var(--dark-color);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.accessibility-controls button:focus {
+  outline: 3px solid var(--primary-color);
+}
+
+/* Menu */
+.menu {
+  display: flex;
+}
+
+.menu ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--dark-color);
+  font-weight: 500;
+  padding: 0.5rem;
+  transition: var(--transition);
+  border-radius: 4px;
+}
+
+.menu a:hover {
+  color: var(--light-color);
+  background: var(--primary-color);
+}
+
+/* Dark mode adjustments */
+body.dark-mode .site-header,
+body.dark-mode .menu {
+  background-color: #222;
+}
+
+body.dark-mode .menu a {
+  color: var(--light-color);
+}
+
+body.dark-mode .menu a:hover {
+  color: var(--primary-color);
+  background: none;
+}
+
+/* Container de autenticação e perfil */
 .auth-container,
 .profile-container {
-  background: var(--bg);
+  background: #fafafa;
+  max-width: 400px;
+  margin: 2rem auto;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 360px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .auth-container h1,
 .profile-container h1 {
   text-align: center;
-  color: var(--primary);
+  color: var(--primary-color);
   margin-bottom: 1rem;
 }
 
 .auth-container label,
 .profile-container label {
+  font-weight: 500;
+  margin-top: 1rem;
   display: block;
-  margin-top: 0.75rem;
-  font-weight: bold;
+  color: var(--dark-color);
 }
 
 .auth-container input,
-.profile-container input {
+.profile-container input,
+.auth-container button,
+.profile-container button {
   width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  border: 1px solid #a5d6a7;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  transition: border-color var(--transition);
+}
+
+.auth-container input:focus,
+.profile-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
 }
 
 .auth-container button,
 .profile-container button {
-  margin-top: 1rem;
-  width: 100%;
-  padding: 0.6rem;
-  background: var(--primary);
-  color: #fff;
+  background: var(--primary-color);
+  color: var(--light-color);
   border: none;
-  border-radius: 4px;
   cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.auth-container button:hover,
+.profile-container button:hover {
+  opacity: 0.8;
 }
 
 .auth-container p {
   text-align: center;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 .auth-container a,
 .profile-container a {
-  color: var(--accent);
+  color: var(--primary-color);
 }
 
+/* Avatar */
 .avatar-wrapper {
   position: relative;
   width: 120px;
@@ -80,36 +211,81 @@ body {
   margin: 0 auto 1rem;
 }
 
-.avatar-wrapper .avatar,
-.profile-container .avatar {
+.avatar {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid var(--primary);
-  display: block;
-  margin: 0 auto;
+  border: 3px solid var(--primary-color);
 }
 
 .change-avatar-btn {
   position: absolute;
   bottom: 0;
   right: 0;
-  background: var(--accent);
-  color: #fff;
+  background: var(--primary-color);
+  color: var(--light-color);
   padding: 4px 8px;
   font-size: 0.8rem;
   border-radius: 12px;
   cursor: pointer;
 }
 
-.profile-container button#logoutBtn,
+/* Logout */
 .logout-btn {
   background: #e57373;
   margin-top: 0.5rem;
+  color: #fff;
 }
 
 #saveBtn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* Footer */
+footer {
+  background: var(--dark-color);
+  color: var(--light-color);
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--light-color);
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition);
+  }
+
+  .menu.menu--open {
+    max-height: 400px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .menu ul {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
+
+/* Estilo base do container */
+#main.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fafafa;
+  color: #333;
 }

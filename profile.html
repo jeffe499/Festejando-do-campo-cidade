@@ -1,12 +1,41 @@
+<!-- profile.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Festejando: Conectando Pessoas, Compartilhando Ideias</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Festejando – Meu Perfil</title>
   <link rel="stylesheet" href="stylesperfil.css" />
 </head>
 <body>
-  <div class="profile-container">
+  <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo"><a href="index.html">Festejando</a></h1>
+      <div class="accessibility-controls">
+        <button id="btn-contrast" aria-label="Alternar modo claro/escuro">🌓</button>
+        <button id="btn-font-decrease" aria-label="Diminuir fonte">A-</button>
+        <button id="btn-font-increase" aria-label="Aumentar fonte">A+</button>
+        <button id="btn-reset" aria-label="Redefinir preferências">⭯</button>
+      </div>
+      <nav class="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="cultura.html">História</a></li>
+          <li><a href="galeria.html">Galeria</a></li>
+          <li><a href="receitas.html">Receitas</a></li>
+          <li><a href="musica.html">Música</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="comentarios.html">Fórum</a></li>
+          <li><a href="profile.html">Perfil</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="profile-container">
     <h1>Meu Perfil</h1>
     <div class="avatar-wrapper">
       <img id="avatarImg" src="default.png" alt="Avatar" class="avatar" />
@@ -30,7 +59,14 @@
       <button type="submit" id="saveBtn" disabled>Salvar Alterações</button>
       <button type="button" id="logoutBtn" class="logout-btn">Logout</button>
     </form>
-  </div>
-  <script src="profile.js"></script>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Festejando, site criado sem fins lucrativos por Jefferson Dias Kreiner.</p>
+    </div>
+  </footer>
+
+  <script src="profile.js" defer></script>
 </body>
 </html>

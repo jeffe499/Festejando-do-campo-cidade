@@ -4,14 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Festejando: Conectando Pessoas, Compartilhando Ideias</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="stylesreceitas.css" />
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Festejando: Conectando Pessoas, Compartilhando Ideias</h1>
-      <button class="btn-menu" aria-label="Abrir menu">☰</button>
-      <nav class="nav-menu">
+  <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo"><a href="index.html">Festejando</a></h1>
+
+      <div class="accessibility-controls">
+        <button id="btn-contrast" aria-label="Alternar modo claro/escuro">🌓</button>
+        <button id="btn-font-decrease" aria-label="Diminuir fonte">A-</button>
+        <button id="btn-font-increase" aria-label="Aumentar fonte">A+</button>
+        <button id="btn-reset" aria-label="Redefinir preferências">⭯</button>
+      </div>
+
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="menu" aria-label="Menu principal">
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="cultura.html">História</a></li>
@@ -22,13 +35,12 @@
           <li><a href="contato.html">Contato</a></li>
           <li><a href="comentarios.html">Fórum</a></li>
           <li><a href="profile.html">Perfil</a></li>
-          <li><a href="login.html" id="logoutLink">Logout</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="container">
+  <main id="main" class="container">
     <h2>Receitas e Gastronomia</h2>
 
     <article>
@@ -48,8 +60,8 @@
       <h3>Hambúrguer Gourmet</h3>
       <img src="img/hambuguer.png" alt="Hambúrguer gourmet suculento" />
       <ul>
-        <li>1 kg de patinho moído</li>
-        <li>150 g de bacon triturado</li>
+        <li>1 kg de patinho moído</li>
+        <li>150 g de bacon triturado</li>
         <li>1 ovo</li>
         <li>Sal e pimenta-do-reino a gosto</li>
         <li>Pães de hambúrguer, queijo, alface, tomate e cebola roxa para montar</li>
@@ -71,7 +83,7 @@
         <li>1 colher (sopa) de sementes de erva-doce (opcional)</li>
         <li>1 pitada de sal</li>
       </ul>
-      <p>Modo de preparo: No liquidificador, bata os ovos, o leite, o óleo e o açúcar até obter uma mistura homogênea. Em uma tigela, misture o fubá, a farinha, o fermento, a erva-doce e o sal. Incorpore a mistura líquida aos ingredientes secos, mexendo bem. Despeje em forma untada e enfarinhada e asse em forno pré-aquecido a 180 °C por aproximadamente 40 minutos.</p>
+      <p>Modo de preparo: No liquidificador, bata os ovos, o leite, o óleo e o açúcar até obter uma mistura homogênea. Em uma tigela, misture o fubá, a farinha, o fermento, a erva-doce e o sal. Incorpore a mistura líquida aos ingredientes secos, mexendo bem. Despeje em forma untada e enfarinhada e asse em forno pré-aquecido a 180 °C por aproximadamente 40 minutos.</p>
     </article>
   </main>
 
@@ -81,6 +93,6 @@
     </div>
   </footer>
 
-  <script src="scripts.js"></script>
+  <script src="receitas.js"></script>
 </body>
 </html>

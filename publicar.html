@@ -1,12 +1,29 @@
+<!-- publicar.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Festejando: Conectando Pessoas, Compartilhando Ideias</title>
-  <link rel="stylesheet" href="stylespublicar.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Festejando: Nova Postagem</title>
+  <link rel="stylesheet" href="stylespublicar.css" />
 </head>
 <body>
-  <div class="forum-post-container">
+  <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo"><a href="index.html">Festejando</a></h1>
+
+      <div class="accessibility-controls">
+        <button id="btn-contrast" aria-label="Alternar modo claro/escuro">🌓</button>
+        <button id="btn-font-decrease" aria-label="Diminuir fonte">A-</button>
+        <button id="btn-font-increase" aria-label="Aumentar fonte">A+</button>
+        <button id="btn-reset" aria-label="Redefinir preferências">⭯</button>
+      </div>
+    </div>
+  </header>
+   <br>
+  <main id="main" class="container forum-post-container">
     <h1>Nova Postagem</h1>
     <form id="postForm">
       <label for="body">Mensagem</label>
@@ -14,7 +31,14 @@
       <button type="submit" id="publishBtn">Publicar</button>
       <a href="comentarios.html" class="button-voltar">Voltar</a>
     </form>
-  </div>
-  <script src="publicar.js"></script>
+  </main>
+<br><br><br>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Festejando, site criado sem fins lucrativos por Jefferson Dias Kreiner.</p>
+    </div>
+  </footer>
+
+  <script src="publicar.js" defer></script>
 </body>
 </html>

@@ -1,37 +1,51 @@
+<!-- login.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Festejando – Login</title>
   <link rel="stylesheet" href="stylesperfil.css" />
 </head>
 <body>
-  <main class="auth-container" role="main">
+  <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo"><a href="index.html">Festejando</a></h1>
+      <div class="accessibility-controls">
+        <button id="btn-contrast" aria-label="Alternar modo claro/escuro">🌓</button>
+        <button id="btn-font-decrease" aria-label="Diminuir fonte">A-</button>
+        <button id="btn-font-increase" aria-label="Aumentar fonte">A+</button>
+        <button id="btn-reset" aria-label="Redefinir preferências">⭯</button>
+      </div>
+      <nav class="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="cultura.html">História</a></li>
+          <li><a href="galeria.html">Galeria</a></li>
+          <li><a href="receitas.html">Receitas</a></li>
+          <li><a href="musica.html">Música</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="comentarios.html">Fórum</a></li>
+          <li><a href="profile.html">Perfil</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="auth-container">
     <h1>Entrar</h1>
     <form id="loginForm" novalidate>
       <label for="email">E-mail</label>
-      <input 
-        type="email" 
-        id="email" 
-        name="email"
-        required 
-        autocomplete="username" 
-        placeholder="Digite seu e-mail" 
-        aria-describedby="emailHelp" 
-      />
+      <input type="email" id="email" name="email" required autocomplete="username"
+             placeholder="Digite seu e-mail" aria-describedby="emailHelp" />
       <small id="emailHelp" class="sr-only">Informe seu e-mail cadastrado.</small>
 
       <label for="password">Senha</label>
-      <input 
-        type="password" 
-        id="password" 
-        name="password" 
-        required 
-        autocomplete="current-password" 
-        placeholder="Digite sua senha" 
-        aria-describedby="passwordHelp" 
-      />
+      <input type="password" id="password" name="password" required autocomplete="current-password"
+             placeholder="Digite sua senha" aria-describedby="passwordHelp" />
       <small id="passwordHelp" class="sr-only">Informe sua senha.</small>
 
       <button type="submit">Login</button>
@@ -39,6 +53,12 @@
     <p>Não tem conta? <a href="signup.html">Cadastrar</a></p>
   </main>
 
-  <script src="login.js"></script>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Festejando, site criado sem fins lucrativos por Jefferson Dias Kreiner.</p>
+    </div>
+  </footer>
+
+  <script src="login.js" defer></script>
 </body>
 </html>
