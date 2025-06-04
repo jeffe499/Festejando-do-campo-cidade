@@ -163,12 +163,52 @@ body.dark-mode .menu a:hover {
   background: none;
 }
 
+/* Dark mode: conteúdo principal */
+body.dark-mode #main.container {
+  background-color: #2a2a2a;
+  color: var(--light-color);
+}
+
+body.dark-mode #main.container h2 {
+  color: var(--light-color);
+  border-left-color: var(--primary-color);
+}
+
+body.dark-mode #main.container p {
+  color: #ccc;
+}
+
+body.dark-mode #main.container ul li {
+  color: var(--light-color);
+}
+
+body.dark-mode #main.container ul li::before {
+  color: var(--primary-color);
+}
+
+body.dark-mode ul.timeline li {
+  border-left-color: var(--primary-color);
+}
+
+body.dark-mode ul.timeline li::before {
+  background-color: var(--primary-color);
+}
+
+body.dark-mode #main.container strong {
+  color: #fff;
+}
+
 /* Footer */
 footer {
   background: var(--dark-color);
   color: var(--light-color);
   padding: 1.5rem 0;
   text-align: center;
+}
+
+body.dark-mode footer {
+  background: #111;
+  color: var(--light-color);
 }
 
 /* Mobile */

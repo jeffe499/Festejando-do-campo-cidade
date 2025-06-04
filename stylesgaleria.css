@@ -29,6 +29,7 @@ body {
   transition: background var(--transition), color var(--transition), font-size var(--transition);
 }
 
+/* Dark mode completo */
 body.dark-mode {
   background: var(--dark-color);
   color: var(--light-color);
@@ -61,6 +62,10 @@ html.small-font { font-size: calc(var(--font-size-base) * 0.875); }
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+body.dark-mode .site-header {
+  background-color: #222;
 }
 
 .header-inner {
@@ -126,6 +131,10 @@ html.small-font { font-size: calc(var(--font-size-base) * 0.875); }
   display: flex;
 }
 
+body.dark-mode .menu {
+  background-color: #222;
+}
+
 .menu ul {
   display: flex;
   gap: 1.5rem;
@@ -146,16 +155,9 @@ html.small-font { font-size: calc(var(--font-size-base) * 0.875); }
   background: var(--primary-color);
 }
 
-/* Dark mode adjustments */
-body.dark-mode .site-header,
-body.dark-mode .menu {
-  background-color: #222;
-}
-
 body.dark-mode .menu a {
   color: var(--light-color);
 }
-
 body.dark-mode .menu a:hover {
   color: var(--primary-color);
   background: none;
@@ -174,6 +176,7 @@ body.dark-mode .menu a:hover {
   overflow: hidden;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--light-color);
 }
 .galeria .item:hover {
   transform: translateY(-10px);
@@ -189,12 +192,124 @@ body.dark-mode .menu a:hover {
   transform: scale(1.1);
 }
 
+/* Dark mode para Galeria */
+body.dark-mode .galeria .item {
+  border-color: #555;
+  background: #2a2a2a;
+}
+body.dark-mode .galeria .item img {
+  border-bottom-color: var(--primary-color);
+}
+
+/* Container principal */
+#main.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fafafa;
+  color: #333;
+}
+
+body.dark-mode #main.container {
+  background-color: #2a2a2a;
+  color: var(--light-color);
+}
+
+/* Títulos das seções */
+#main h2 {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  border-left: 5px solid #1cec6c;
+  padding-left: 0.75rem;
+  color: #222;
+}
+
+body.dark-mode #main.container h2 {
+  color: var(--light-color);
+  border-left-color: var(--primary-color);
+}
+
+/* Parágrafos introdutórios */
+#main p {
+  margin: 0.5rem 0 1rem;
+  font-size: 1rem;
+}
+
+body.dark-mode #main.container p {
+  color: #ccc;
+}
+
+/* Listas padrão */
+#main ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1.5rem;
+}
+#main ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+#main ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #1cec6c;
+  font-weight: bold;
+}
+
+body.dark-mode #main.container ul li {
+  color: var(--light-color);
+}
+body.dark-mode #main.container ul li::before {
+  color: var(--primary-color);
+}
+
+/* Timeline */
+ul.timeline li {
+  border-left: 3px solid #1cec6c;
+  padding-left: 1rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+ul.timeline li::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 0.4em;
+  width: 12px;
+  height: 12px;
+  background-color: #1cec6c;
+  border-radius: 50%;
+}
+
+body.dark-mode ul.timeline li {
+  border-left-color: var(--primary-color);
+}
+body.dark-mode ul.timeline li::before {
+  background-color: var(--primary-color);
+}
+
+/* Destaques em negrito */
+#main strong {
+  color: #2c3e50;
+}
+body.dark-mode #main.container strong {
+  color: #fff;
+}
+
 /* Footer */
 footer {
   background: var(--dark-color);
   color: var(--light-color);
   padding: 1.5rem 0;
   text-align: center;
+}
+
+body.dark-mode footer {
+  background: #111;
+  color: var(--light-color);
 }
 
 /* Mobile */
@@ -222,71 +337,4 @@ footer {
     padding: 1rem;
     gap: 1rem;
   }
-}
-
-/* Estilo base do container principal */
-#main.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: #fafafa;
-  color: #333;
-}
-
-/* Títulos das seções */
-#main h2 {
-  font-size: 1.8rem;
-  margin-top: 2rem;
-  border-left: 5px solid #1cec6c;
-  padding-left: 0.75rem;
-  color: #222;
-}
-
-/* Parágrafos introdutórios */
-#main p {
-  margin: 0.5rem 0 1rem;
-  font-size: 1rem;
-}
-
-/* Listas padrão */
-#main ul {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 1.5rem;
-}
-#main ul li {
-  position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-#main ul li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #1cec6c;
-  font-weight: bold;
-}
-
-/* Timeline */
-ul.timeline li {
-  border-left: 3px solid #1cec6c;
-  padding-left: 1rem;
-  margin-left: 0.5rem;
-  margin-bottom: 0.75rem;
-  position: relative;
-}
-ul.timeline li::before {
-  content: '';
-  position: absolute;
-  left: -8px;
-  top: 0.4em;
-  width: 12px;
-  height: 12px;
-  background-color: #1cec6c;
-  border-radius: 50%;
-}
-
-/* Destaques em negrito */
-#main strong {
-  color: #2c3e50;
 }

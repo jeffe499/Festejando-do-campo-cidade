@@ -6,7 +6,7 @@
 }
 
 :root {
-  --primary-color: #1cec6c;
+  --primary-color: #A4C639;
   --dark-color: #333;
   --light-color: #fff;
   --transition: 0.3s ease;
@@ -67,6 +67,9 @@ body.dark-mode {
   top: 0;
   z-index: 100;
 }
+body.dark-mode .site-header {
+  background-color: #222;
+}
 
 .header-inner {
   display: flex;
@@ -74,7 +77,7 @@ body.dark-mode {
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: var(--space-md);
 }
 
 .logo a {
@@ -96,9 +99,7 @@ body.dark-mode {
 }
 .accessibility-controls button:focus {
   outline: 3px solid var(--primary-color);
-}
-body.dark-mode .site-header {
-  background-color: #222;
+  outline-offset: 2px;
 }
 body.dark-mode .accessibility-controls button {
   border-color: var(--light-color);
@@ -115,19 +116,30 @@ body.dark-mode .accessibility-controls button {
   border-radius: var(--radius-md);
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border-top: 0.375rem solid var(--primary-color);
-  transition: background var(--transition), color var(--transition);
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
 }
+body.dark-mode .forum-post-container {
+  background: #2a2a2a;
+  color: var(--light-color);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
 .forum-post-container h1 {
   margin-bottom: var(--space-md);
   color: var(--primary-color);
   font-size: 1.75rem;
 }
+
 label {
   display: block;
   margin-top: var(--space-lg);
   font-weight: 500;
   color: var(--dark-color);
 }
+body.dark-mode label {
+  color: var(--light-color);
+}
+
 textarea {
   width: 100%;
   padding: var(--space-sm);
@@ -135,11 +147,16 @@ textarea {
   border-radius: var(--radius-sm);
   font-size: 1rem;
   resize: vertical;
-  transition: border-color var(--transition);
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
 }
 textarea:focus {
   outline: none;
   border-color: var(--primary-color);
+}
+body.dark-mode textarea {
+  background: #3a3a3a;
+  color: var(--light-color);
+  border: 1px solid #555;
 }
 
 /* Botões */
@@ -153,7 +170,7 @@ a.button-voltar {
   border: none;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: opacity var(--transition);
+  transition: opacity var(--transition), background var(--transition), color var(--transition);
 }
 button#publishBtn {
   background: var(--primary-color);
@@ -167,8 +184,7 @@ a.button-voltar {
 button#publishBtn:hover,
 a.button-voltar:hover,
 button:focus,
-a.button-voltar:focus,
-textarea:focus {
+a.button-voltar:focus {
   opacity: 0.8;
   outline: 3px solid var(--primary-color);
   outline-offset: 2px;
@@ -183,6 +199,7 @@ footer {
   border-top: 3px solid var(--primary-color);
   text-align: center;
   width: 100%;
+  transition: background var(--transition), color var(--transition);
 }
 
 /* Responsivo */

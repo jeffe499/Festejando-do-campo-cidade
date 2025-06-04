@@ -27,6 +27,7 @@ body {
   transition: background var(--transition), color var(--transition), font-size var(--transition);
 }
 
+/* Dark mode base */
 body.dark-mode {
   background: var(--dark-color);
   color: var(--light-color);
@@ -59,6 +60,11 @@ body.dark-mode {
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+/* Dark mode header */
+body.dark-mode .site-header {
+  background-color: #222;
 }
 
 .header-inner {
@@ -146,8 +152,7 @@ body.dark-mode {
   background: var(--primary-color);
 }
 
-/* Dark mode adjustments */
-body.dark-mode .site-header,
+/* Dark mode menu */
 body.dark-mode .menu {
   background-color: #222;
 }
@@ -161,13 +166,13 @@ body.dark-mode .menu a:hover {
   background: none;
 }
 
-
 /* Footer */
 footer {
   background: var(--dark-color);
   color: var(--light-color);
   padding: 1.5rem 0;
   text-align: center;
+  transition: background var(--transition), color var(--transition);
 }
 
 /* Mobile */
@@ -208,6 +213,12 @@ footer {
   color: #333;
 }
 
+/* Dark mode main container */
+body.dark-mode #main.container {
+  background-color: #2a2a2a;
+  color: var(--light-color);
+}
+
 /* Títulos das seções */
 #main h2 {
   font-size: 1.8rem;
@@ -217,10 +228,21 @@ footer {
   color: #222;
 }
 
+/* Dark mode section titles */
+body.dark-mode #main h2 {
+  border-left-color: var(--primary-color);
+  color: var(--light-color);
+}
+
 /* Parágrafos introdutórios */
 #main p {
   margin: 0.5rem 0 1rem;
   font-size: 1rem;
+}
+
+/* Dark mode paragraphs */
+body.dark-mode #main p {
+  color: var(--light-color);
 }
 
 /* Listas padrão */
@@ -245,6 +267,14 @@ footer {
   font-weight: bold;
 }
 
+/* Dark mode list items */
+body.dark-mode #main ul li::before {
+  color: var(--primary-color);
+}
+body.dark-mode #main ul li {
+  color: var(--light-color);
+}
+
 /* Linha do tempo */
 ul.timeline li {
   border-left: 3px solid #1cec6c;
@@ -265,7 +295,20 @@ ul.timeline li::before {
   border-radius: 50%;
 }
 
+/* Dark mode timeline */
+body.dark-mode ul.timeline li {
+  border-left-color: var(--primary-color);
+}
+body.dark-mode ul.timeline li::before {
+  background-color: var(--primary-color);
+}
+
 /* Destaques em negrito */
 #main strong {
   color: #2c3e50;
+}
+
+/* Dark mode strong highlights */
+body.dark-mode #main strong {
+  color: var(--light-color);
 }
