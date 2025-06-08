@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa Interativo do Brasil</title>
+  <!-- Seu CSS geral -->
+  <link rel="stylesheet" href="stylesmapa.css" />
+  <!-- CSS do Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+</head>
+<body>
+  <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo"><a href="index.html">Festejando</a></h1>
+
+      <div class="accessibility-controls">
+        <button id="btn-contrast" aria-label="Alternar modo claro/escuro">🌓</button>
+        <button id="btn-font-decrease" aria-label="Diminuir fonte">A-</button>
+        <button id="btn-font-increase" aria-label="Aumentar fonte">A+</button>
+        <button id="btn-reset" aria-label="Redefinir preferências">⭯</button>
+      </div>
+
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="indexcultura.html">História</a></li>
+          <li><a href="indexmapa.html">Mapa</a></li>
+          <li><a href="indexgaleria.html">Galeria</a></li>
+          <li><a href="indexreceitas.html">Receitas</a></li>
+          <li><a href="indexmusica.html">Música</a></li>
+          <li><a href="indexsobre.html">Sobre</a></li>
+          <li><a href="indexcontato.html">Contato</a></li>
+          <li><a href="indexcomentarios.html">Fórum</a></li>
+          <li><a href="indexprofile.html">Perfil</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <button id="btn-centralizar" aria-label="Centralizar mapa no Brasil">Centralizar Brasil</button>
+    <div id="map"></div>
+   <div class="conteudo-abaixo">
+  <h1>Mapa Interativo do Brasil</h1>
+  <p>Este mapa apresenta os 10 festivais mais importantes de cada estado brasileiro, trazendo cultura, tradições e celebrações de todo o país.</p>
+</div>
+
+  </main>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Variável global para camada dos estados e para o mapa
+    let layerEstados;
+
+    // Inicializa o mapa
+    const map = L.map('map', { zoomControl: true, attributionControl: false });
+
+    // Objeto com festas por estado, agora incluindo data
+       const festasPorEstado = {
+ "Acre": [
+    { "nome": "Carnaval da Família", "descricao": "Carnaval tradicional promovido em Rio Branco com shows, blocos e atrações para todas as idades", "data": "fevereiro" },
+    { "nome": "Arraial Cultural", "descricao": "Maior festa junina do Acre com apresentações de quadrilhas e comidas típicas", "data": "junho" },
+    { "nome": "Festival Yawa", "descricao": "Festival indígena do povo Yawanawá na aldeia Nova Esperança, com rituais e celebrações culturais", "data": "julho/agosto" },
+    { "nome": "Festival do Açaí", "descricao": "Festival gastronômico em Feijó celebrando o fruto símbolo da cidade", "data": "agosto" },
+    { "nome": "Expoacre", "descricao": "Maior feira agropecuária, industrial e comercial do estado", "data": "final de julho" },
+    { "nome": "Festival Varadouro", "descricao": "Festival de música alternativa e artes integradas em Rio Branco", "data": "outubro" },
+    { "nome": "Festival Pachamama", "descricao": "Festival de cinema de fronteira com foco na produção latino-americana", "data": "novembro" },
+    { "nome": "Festival Ecoacre", "descricao": "Festival cultural e ambiental com oficinas, exposições e debates", "data": "maio" },
+    { "nome": "Festival da Castanha", "descricao": "Evento tradicional na cidade de Xapuri, com música e culinária típica", "data": "abril" },
+    { "nome": "Festival das Águas", "descricao": "Festival em Cruzeiro do Sul com esportes náuticos, cultura e ecoturismo", "data": "julho" }
+  ],
+  "Alagoas": [
+    { "nome": "Festival Carambola", "descricao": "Festival de música autoral, artes e cultura urbana em Maceió", "data": "15 de novembro" },
+    { "nome": "Circuito Alagoano de Inverno", "descricao": "Circuito cultural e turístico nas cidades serranas com música e gastronomia", "data": "julho a agosto" },
+    { "nome": "Festival Em Cantos de Alagoas", "descricao": "Festival de música popular alagoana com seletivas regionais", "data": "agosto" },
+    { "nome": "Festival de Cinema de Arapiraca", "descricao": "Festival audiovisual com produções locais e nacionais", "data": "setembro/outubro" },
+    { "nome": "Festival Alagoanes", "descricao": "Festival de cinema alagoano 100% online com acesso gratuito", "data": "novembro" },
+    { "nome": "Romaria do Bom Jesus dos Navegantes", "descricao": "Procissão fluvial no Baixo São Francisco, evento religioso tradicional", "data": "último domingo de janeiro" },
+    { "nome": "Festival Brasil Sabor - AL", "descricao": "Festival gastronômico com pratos regionais em vários municípios", "data": "junho" },
+    { "nome": "Festival Massayó Verão", "descricao": "Grande festival de música popular em Maceió no verão", "data": "janeiro" },
+    { "nome": "Festival de Verão Rio Largo", "descricao": "Pré-carnaval com shows nacionais no interior", "data": "fevereiro" },
+    { "nome": "Festivais Gastronômicos de Arapiraca", "descricao": "Série de festivais culinários sobre comidas típicas do agreste", "data": "abril a dezembro (mensais)" }
+  ],
+  "Amapá": [
+    { "nome": "Festival do Inajá", "descricao": "Festival gastronômico e cultural rural em Macapá", "data": "agosto/setembro" },
+    { "nome": "Festival do Pirarucu", "descricao": "Evento cultural com foco no peixe símbolo de Cutias", "data": "agosto" },
+    { "nome": "Festival Indígena do Amapá e Norte do Pará", "descricao": "Feira cultural e celebração dos povos indígenas em Oiapoque", "data": "28 a 30 de novembro" },
+    { "nome": "Festival Imagem-Movimento (FIM)", "descricao": "Festival internacional de cinema em Macapá", "data": "dezembro" },
+    { "nome": "Festival Gastronômico Amapá Sabor", "descricao": "Evento culinário com chefs e pratos amazônicos", "data": "novembro" },
+    { "nome": "Festival de Samba e Enredo", "descricao": "Competição entre escolas de samba de Macapá", "data": "dezembro" },
+    { "nome": "Festival da Pororoca", "descricao": "Festival com surf, cultura e música em São Domingos do Capim", "data": "março/abril" },
+    { "nome": "Festival Curta Teatro", "descricao": "Mostra de teatro ao ar livre em Macapá", "data": "agosto" },
+    { "nome": "Festival RUEIRO", "descricao": "Festival de teatro de rua na Ilha do Ferro", "data": "março" },
+    { "nome": "Festival Cultural Amapaense (AEIOU)", "descricao": "Evento escolar com apresentações de cultura local", "data": "agosto" }
+  ],
+  "Amazonas": [
+    { "nome": "Festival Folclórico de Parintins", "descricao": "Maior espetáculo popular do Norte, com os bois Garantido e Caprichoso", "data": "final de junho" },
+    { "nome": "Festival de Ciranda de Manacapuru", "descricao": "Cirandas folclóricas com grandes alegorias e apresentações no Cirandódromo", "data": "último fim‑de‑semana de agosto" },
+    { "nome": "Carnaval de Manaus", "descricao": "Desfiles de escolas de samba e blocos carnavalescos na capital", "data": "fevereiro/março" },
+    { "nome": "Festival Amazonas de Ópera", "descricao": "Festival internacional de ópera no Teatro Amazonas", "data": "março/abril" },
+    { "nome": "Encontro de Folguedos", "descricao": "Manifestação regional com bois‑bumbás, mamulengos e danças típicas", "data": "julho" },
+    { "nome": "Festival de Teatro de Rua", "descricao": "Espetáculos cênico‑teatrais ao ar livre em Manaus", "data": "junho" },
+    { "nome": "Amazonas Sabor", "descricao": "Festival gastronômico com pratos regionais e chefs locais", "data": "setembro" },
+    { "nome": "Festival Reggae Manaus", "descricao": "Encontro de bandas e DJs de reggae na capital", "data": "novembro" },
+    { "nome": "Festival Folclórico de Autazes", "descricao": "Festival com danças, música e comidas típicas no interior do estado", "data": "outubro" },
+    { "nome": "Festival Internacional de Jazz do Rio Negro", "descricao": "Música instrumental de destaque internacional junto ao rio", "data": "dezembro" }
+  ],
+  "Bahia": [
+    { "nome": "Carnaval de Salvador", "descricao": "Maior Carnaval de rua do mundo, com trios elétricos e blocos populares", "data": "fevereiro" },
+    { "nome": "Festival de Verão Salvador", "descricao": "Evento musical com grandes nomes do axé e pop na Arena Fonte Nova", "data": "final de janeiro/início de fevereiro" },
+    { "nome": "Festival de Música e Arte Olodum (Femadum)", "descricao": "Festival afro‑latino em Salvador com hip‑hop, reggae e ritmos urbanos", "data": "Rosário de janeiro/julho (varia)" },
+    { "nome": "Festival Frequências Preciosas", "descricao": "Festival de música negra e indígena em Salvador, em Piatã", "data": "primavera" },
+    { "nome": "Festival do Morro de São Paulo", "descricao": "Música e sustentabilidade na ilha de Morro de São Paulo", "data": "dezembro" },
+    { "nome": "Festival Suíça Bahiana", "descricao": "Festival gratuito de música independente em Vitória da Conquista", "data": "outubro" },
+    { "nome": "Sabores de Itacaré", "descricao": "Festival gastronômico com chefs regionais e turismo cultural", "data": "dezembro" },
+    { "nome": "Tempero no Forte", "descricao": "Festival gastronômico no litoral norte (Praia do Forte)", "data": "final de novembro" },
+    { "nome": "Universo Paralello", "descricao": "Festival de música eletrônica em Ituberá, no litoral sul", "data": "fim de dezembro–início de janeiro" },
+    { "nome": "Afropunk Salvador", "descricao": "Festival de cultura e música negra com artistas nacionais e internacionais", "data": "novembro" }
+  ],
+  "Ceará": [
+    { "nome": "Festival Junino Ceará Junino", "descricao": "Ciclo de festivais regionais de quadrilhas em diversos municípios", "data": "julho" },
+    { "nome": "Juaforró", "descricao": "São João em Juazeiro do Norte com forró pé‑de‑serra e eletrônicos", "data": "junho" },
+    { "nome": "Cine Ceará – Festival Ibero‑americano de Cinema", "descricao": "Festival internacional de cinema em Fortaleza", "data": "dezembro" },
+    { "nome": "Festival Halleluya", "descricao": "Maior festival de música católica da América Latina, em Fortaleza", "data": "julho" },
+    { "nome": "Festival Alberto Nepomuceno", "descricao": "Festival de música erudita, educação patrimonial e artes cênicas", "data": "janeiro" },
+    { "nome": "Festival de Teatro de Rua (RUEIRO)", "descricao": "Festival de performances teatrais ao ar livre na Ilha do Ferro", "data": "março" },
+    { "nome": "Festival Gastronômico de Fortaleza", "descricao": "Eventos culinários reunindo chefs e gastronomia local", "data": "vários ao longo do ano" },
+    { "nome": "Fortaleza Carnatal", "descricao": "Micareta semelhante ao Carnaval, com trios e blocos em Fortaleza", "data": "dezembro" },
+    { "nome": "Ceará Music Festival", "descricao": "Festival de música pop e eletrônica em Fortaleza", "data": "agosto (data variável)" },
+    { "nome": "Festival de Quadrilhas de Baturité", "descricao": "Quadrilhas juninas em Baturité como parte do Ceará Junino", "data": "início de julho" }
+  ],
+ "Espírito Santo": [
+    { "nome": "Vibra Rock Brasil", "descricao": "Maior festival de rock do ES, com Paralamas, Frejat e Humberto Gessinger", "data": "5 de abril" },
+    { "nome": "Penha Roots", "descricao": "Festival de reggae e forró pé‑de‑serra no Patrimônio da Penha", "data": "18‑20 de abril" },
+    { "nome": "Boom Rap Festival", "descricao": "Maior festival de rap do estado, no Estádio Kleber Andrade", "data": "7 de junho" },
+    { "nome": "Santa Jazz", "descricao": "Jazz e bossa nova em Santa Teresa", "data": "13‑15 de junho" },
+    { "nome": "Festival de Inverno de Guaçuí", "descricao": "Música e circo, com Marcelo Falcão e Zé Ramalho", "data": "3‑6 de julho" },
+    { "nome": "Tenda Lab", "descricao": "Artes integradas, com Liniker e outros artistas", "data": "25‑26 de julho" },
+    { "nome": "Festival Movimento Cidade", "descricao": "Artes integradas com música, cinema e oficinas em Vila Velha", "data": "15‑17 de agosto" },
+    { "nome": "Festival Pocar", "descricao": "Cultura com reggae e poesia em Conceição da Barra", "data": "1‑4 de agosto" },
+    { "nome": "Festival da Cultura Italiana (Venda Nova)", "descricao": "Festa típica da imigração italiana", "data": "30 de maio‑1 de junho" },
+    { "nome": "Festival Gastronômico & Cultural de São Mateus", "descricao": "Circuito e festival gastronômico com workshops", "data": "6‑8 de setembro" }
+  ],
+  "Goiás": [
+    { "nome": "FICA", "descricao": "Festival de Cinema e Vídeo Ambiental na cidade de Goiás", "data": "3‑8 de junho" },
+    { "nome": "Canto da Primavera", "descricao": "Mostra musical em Pirenópolis", "data": "9‑14 de setembro" },
+    { "nome": "Arraiá do Bem", "descricao": "Festa junina solidária em Goiânia", "data": "6‑8 de junho" },
+    { "nome": "Festa do Divino Pai Eterno", "descricao": "Romaria religiosa em Trindade", "data": "última sexta de junho‑primeiro domingo de julho" },
+    { "nome": "Festival Cozinha Raiz de Pirenópolis", "descricao": "Gastronomia ancestral no interior", "data": "setembro" },
+    { "nome": "Festival Gourmet Goiânia", "descricao": "Alta gastronomia com menus fixos", "data": "fev‑março" },
+    { "nome": "Festival Gastronômico do Cerrado", "descricao": "Culinária do milho e do Cerrado", "data": "maio" },
+    { "nome": "Café Fest", "descricao": "Cultura do café em Goiânia", "data": "abril" },
+    { "nome": "Festival Brasil Sabor", "descricao": "Festival gastronômico em várias cidades goianas", "data": "maio‑junho" },
+    { "nome": "Um Festival", "descricao": "Festival de rock nacional em Goiânia Arena", "data": "22 de março" }
+  ],
+  "Maranhão": [
+    { "nome": "Bumba‑meu‑boi do Maranhão", "descricao": "Folguedo patrimonial da cultura maranhense", "data": "junho‑julho" },
+    { "nome": "São João do Maranhão", "descricao": "Festas juninas com bumba‑meu‑boi, cacuriá e tambor de crioula", "data": "junho‑julho" },
+    { "nome": "Festival Guarnicê de Cinema", "descricao": "Festival de cinema com mostras competitivas em SLZ", "data": "junho" },
+    { "nome": "Festival BR‑135", "descricao": "Música autoral, reggae, hip‑hop e cultura urbana", "data": "outubro" },
+    { "nome": "Festa de São José de Ribamar", "descricao": "Romaria religiosa e cultural em SL Ribamar", "data": "segundo domingo de setembro" },
+    { "nome": "Festa do Divino Espírito Santo", "descricao": "Tradição religiosa com ritual do império", "data": "maio/junho" },
+    { "nome": "Festival Maranhão Open Air", "descricao": "Festival de música pesada/heavy metal", "data": "outubro" },
+    { "nome": "Maranhão Open Air", "descricao": "Música pesada no estilo open‑air", "data": "outubro" },
+    { "nome": "Maranhão Open Air", "descricao": "Evento de rock/metal (edições passadas)", "data": "outubro" },
+    { "nome": "Bumba‑meu‑boi (arraiais diversos)", "descricao": "Apresentações populares em arraiais por todo estado", "data": "junho‑julho" }
+  ],
+  "Mato Grosso": [
+    { "nome": "Festival Calango", "descricao": "Festival de rock independente em Cuiabá", "data": "abril/maio" },
+    { "nome": "Encontro Nacional de Violeiros de Poxoréu", "descricao": "Maior festival de viola caipira do Brasil", "data": "final de maio/início de junho" },
+    { "nome": "Festival Velha Joana", "descricao": "Festival de teatro em Primavera do Leste", "data": "setembro" },
+    { "nome": "Circuito do Lambadão", "descricao": "Mostras e shows do ritmo regional lambadão", "data": "abril/agosto" },
+    { "nome": "Festival de Teatro de Mato Grosso", "descricao": "Circuito de artes cênicas em diversas cidades", "data": "variável" },
+    { "nome": "Festival de Lambadão", "descricao": "Festival dedicado ao lambadão cuiabano", "data": "abril" },
+    { "nome": "Feira Agropecuária (Aprorural)", "descricao": "Agronegócio com rodeios, leilões e shows", "data": "outubro/novembro" },
+    { "nome": "Festival de Inverno de Chapada dos Guimarães", "descricao": "Música, ecologia e turismo na serra", "data": "julho" },
+    { "nome": "Expô Cuiabá", "descricao": "Exposição agropecuária com shows sertanejos", "data": "agosto/setembro" },
+    { "nome": "Festival de Música Regional do Pantanal", "descricao": "Música regional e cultura pantaneira", "data": "agosto" }
+  ],
+  "Mato Grosso do Sul": [
+    { "nome": "Festival América do Sul (FAS)", "descricao": "Festival multiarte em Corumbá, integrando países sul‑americanos", "data": "maio" },
+    { "nome": "Festival de Inverno de Bonito (FIB)", "descricao": "Arte, música e natureza em Bonito", "data": "agosto" },
+    { "nome": "Festival Boca de Cena", "descricao": "Festival de teatro e circo em Campo Grande", "data": "março" },
+    { "nome": "Festa da Linguiça de Maracaju", "descricao": "Celebração gastronômica local", "data": "agosto" },
+    { "nome": "Festival do Sobá", "descricao": "Evento gastronômico em Campo Grande", "data": "março" },
+    { "nome": "Festa da Melancia de Eldorado", "descricao": "Festa rural com gastronomia e cultura", "data": "julho/agosto" },
+    { "nome": "Festa do Tomate de Antônio João", "descricao": "Festival rural especializado em tomate", "data": "junho/julho" },
+    { "nome": "Festa da Cana de Sonora", "descricao": "Festival rural da produção de cana", "data": "junho" },
+    { "nome": "Festa do Ovo de Terenos", "descricao": "Evento gastronômico local", "data": "setembro" },
+    { "nome": "Festa do Queijo de Rochedinho", "descricao": "Festival rural de queijo artesanal", "data": "outubro" }
+  ],
+  "Minas Gerais": [
+    { "nome": "Carnaval da Liberdade / Carnaval de BH", "descricao": "Maior carnaval artístico do Estado, com blocos e escolas de samba", "data": "fevereiro/março" },
+    { "nome": "Festival Sarará", "descricao": "Festival de música alternativa em BH (ex: Liniker, BK)", "data": "maio" },
+    { "nome": "Festival SENSACIONAL!", "descricao": "Festival de música com atrações nacionais em BH", "data": "junho" },
+    { "nome": "Festival Internacional de Quadrinhos (FIQ)", "descricao": "Bienal de HQs em Belo Horizonte", "data": "maio" },
+    { "nome": "Virada Cultural", "descricao": "24h de cultura popular em BH", "data": "agosto" },
+    { "nome": "Festival de Inverno de Ouro Preto", "descricao": "Música, teatro e oficinas nas cidades históricas", "data": "julho" },
+    { "nome": "Festival de Inverno de Itabira", "descricao": "Festival com grandes nomes da MPB e cultura drummondiana", "data": "julho" },
+    { "nome": "Festival de Inverno de Poços de Caldas", "descricao": "Música, teatro e circo em espaços públicos", "data": "julho" },
+    { "nome": "Festival Comida de Buteco", "descricao": "Concurso gastronômico de botecos em BH", "data": "abril/maio" },
+    { "nome": "Festival de Gastronomia de Tiradentes", "descricao": "Alta gastronomia em cidade histórica", "data": "outubro" }
+  ],
+  'Pará': [
+    { "nome": "Festa de Círio de Nazaré", "descricao": "Maior festa religiosa do Pará, em homenagem à Nossa Senhora de Nazaré", "data": "segundo domingo de outubro" },
+    { "nome": "Festival de Verão de Salinas", "descricao": "Festival de música e cultura no litoral do Pará", "data": "janeiro" },
+    { "nome": "Marujada de São Benedito", "descricao": "Manifestação cultural e religiosa tradicional do Pará", "data": "julho" },
+    { "nome": "Festa do Açaí", "descricao": "Celebração do fruto típico do Pará com comidas e shows", "data": "agosto" },
+    { "nome": "Festival Folclórico de Parintins", "descricao": "Festival de folclore com os bois Garantido e Caprichoso", "data": "junho" },
+    { "nome": "Festival de Ópera do Theatro da Paz", "descricao": "Apresentações de ópera em Belém", "data": "julho" },
+    { "nome": "Festa de São João de Icoaraci", "descricao": "Festa junina tradicional com quadrilhas e música", "data": "junho" },
+    { "nome": "Festival Gastronômico do Tacacá", "descricao": "Evento gastronômico com pratos típicos do Pará", "data": "março" },
+    { "nome": "Festa de Nossa Senhora do Carmo", "descricao": "Festa religiosa e cultural em Belém", "data": "julho" },
+    { "nome": "Festival de Jazz e Blues de Belém", "descricao": "Festival de música instrumental com artistas nacionais e internacionais", "data": "outubro" }
+  ],
+  'Paraíba': [
+    { "nome": "São João de João Pessoa", "descricao": "Festejos juninos com shows, quadrilhas e cultura popular", "data": "20 a 24 de junho" },
+    { "nome": "Festa de São Pedro de Belém", "descricao": "Maior festa junina do interior com shows de forró e quadrilhas", "data": "primeiro final de semana de julho" },
+    { "nome": "Arraiá do Interior", "descricao": "Circuito de festas juninas em nove cidades com atrações regionais", "data": "maio a agosto" },
+    { "nome": "Fest Verão Paraíba", "descricao": "Festival de verão com grandes nomes da música brasileira", "data": "verão" },
+    { "nome": "Festa da Tainha", "descricao": "Festa tradicional com música, gastronomia e cultura local", "data": "julho" },
+    { "nome": "Festival de Inverno de Campina Grande", "descricao": "Festival de música e cultura na cidade", "data": "julho" },
+    { "nome": "Festival de Artes de Patos", "descricao": "Festival de artes integradas com teatro e música", "data": "agosto" },
+    { "nome": "Festival de Música de João Pessoa", "descricao": "Evento de música popular brasileira", "data": "outubro" },
+    { "nome": "Festival de Teatro de Campina Grande", "descricao": "Mostra de teatro com artistas regionais", "data": "setembro" },
+    { "nome": "Festival de Cultura Popular de Areia", "descricao": "Evento com manifestações culturais tradicionais", "data": "junho" }
+    ],
+  'Paraná': [
+    { "nome": "Festival de Inverno de Curitiba", "descricao": "Música, dança, teatro e gastronomia no centro histórico", "data": "26 de julho a 4 de agosto" },
+    { "nome": "Warung Day Festival", "descricao": "Festival de música eletrônica com três palcos simultâneos", "data": "3 de maio" },
+    { "nome": "Festival Internacional de Danças Urbanas (FIH2)", "descricao": "Mais de 100 grupos de dança do Brasil e América do Sul", "data": "5 a 7 de julho" },
+    { "nome": "Festival de Música de Londrina", "descricao": "Festival internacional com diversos gêneros musicais", "data": "13 a 21 de julho" },
+    { "nome": "Cianorte Festival", "descricao": "Shows, atrações culturais, desfiles e comida típica", "data": "19 a 28 de julho" },
+    { "nome": "Festa da Uva de Marialva", "descricao": "Festival agrícola com exposição e shows", "data": "agosto" },
+    { "nome": "Festival de Teatro de Curitiba", "descricao": "Evento de artes cênicas com grupos nacionais", "data": "abril" },
+    { "nome": "Festival de Gastronomia de Curitiba", "descricao": "Evento gastronômico com chefs renomados", "data": "outubro" },
+    { "nome": "Festival de Cinema de Curitiba", "descricao": "Exibição de filmes nacionais e internacionais", "data": "novembro" },
+    { "nome": "Festival de Folclore de Londrina", "descricao": "Apresentações culturais e folclóricas regionais", "data": "julho" }
+  ],
+  'Pernambuco': [
+    { "nome": "Carnaval de Recife e Olinda", "descricao": "Um dos carnavais mais tradicionais do Brasil, com blocos de rua e maracatus", "data": "fevereiro/março" },
+    { "nome": "Festa de São João de Caruaru", "descricao": "Maior festa junina do Brasil, com quadrilhas, comidas típicas e shows", "data": "junho" },
+    { "nome": "Festival de Inverno de Garanhuns", "descricao": "Evento cultural com música, teatro, dança e artes plásticas", "data": "julho" },
+    { "nome": "Festa do Divino Espírito Santo", "descricao": "Festa religiosa com procissões e celebrações em várias cidades", "data": "maio/junho" },
+    { "nome": "Festival de Teatro de Pernambuco", "descricao": "Mostra de teatro com grupos locais e nacionais", "data": "outubro" },
+    { "nome": "Festival de Jazz de Recife", "descricao": "Festival de música instrumental com artistas nacionais e internacionais", "data": "novembro" },
+    { "nome": "Maracatu Rural de Nazaré da Mata", "descricao": "Manifestação cultural tradicional do interior do estado", "data": "julho" },
+    { "nome": "Festa de Nossa Senhora do Carmo", "descricao": "Festa religiosa e cultural com novenas e procissões", "data": "julho" },
+    { "nome": "Festival Recife do Rock", "descricao": "Festival de música rock com bandas locais e nacionais", "data": "agosto" },
+    { "nome": "Festival de Quadrilhas Juninas", "descricao": "Competição de quadrilhas em várias cidades do estado", "data": "junho" }
+  ],
+    "Piauí": [
+    { "nome": "Festival de Teatro de Teresina", "descricao": "Mostra de teatro com apresentações locais e nacionais", "data": "outubro" },
+    { "nome": "Festejos de São João de Parnaíba", "descricao": "Tradicional festa junina com quadrilhas e comidas típicas", "data": "junho" },
+    { "nome": "Festival de Inverno de Pedro II", "descricao": "Evento cultural com música, dança e artes plásticas", "data": "agosto" },
+    { "nome": "Festival de Jazz de Teresina", "descricao": "Festival de música instrumental com artistas locais", "data": "novembro" },
+    { "nome": "Carnaval de Teresina", "descricao": "Desfiles de blocos e festas na capital do Piauí", "data": "fevereiro" },
+    { "nome": "Festival de Cinema de Parnaíba", "descricao": "Mostra de filmes nacionais e internacionais", "data": "julho" },
+    { "nome": "Festival de Folclore de Oeiras", "descricao": "Apresentações de danças e músicas folclóricas", "data": "junho" },
+    { "nome": "Festa do Bumba Meu Boi", "descricao": "Evento folclórico com dança e música tradicional", "data": "junho" },
+    { "nome": "Festival Gastronômico de Teresina", "descricao": "Evento com pratos típicos da culinária piauiense", "data": "setembro" },
+    { "nome": "Festival das Águas de Piripiri", "descricao": "Festival cultural e turístico com shows e esportes", "data": "janeiro" }
+    ],
+
+    "Rio de Janeiro": [
+    { "nome": "Carnaval do Rio de Janeiro", "descricao": "Maior carnaval do mundo, com desfiles das escolas de samba", "data": "fevereiro/março" },
+    { "nome": "Festival do Rio", "descricao": "Festival internacional de cinema com exibições em várias cidades", "data": "outubro" },
+    { "nome": "Rock in Rio", "descricao": "Grande festival de música com artistas nacionais e internacionais", "data": "setembro/outubro" },
+    { "nome": "Festa de São Jorge", "descricao": "Celebração religiosa com procissões e festas populares", "data": "23 de abril" },
+    { "nome": "Festival de Jazz & Blues", "descricao": "Evento anual com apresentações de jazz e blues no Rio", "data": "agosto" },
+    { "nome": "Festa do Cajú", "descricao": "Festival cultural e gastronômico no bairro de Jacarepaguá", "data": "novembro" },
+    { "nome": "Festival de Cinema de Tiradentes (RJ)", "descricao": "Mostra de cinema independente e de arte", "data": "janeiro" },
+    { "nome": "Festa de Iemanjá", "descricao": "Celebração em homenagem à rainha do mar, com oferendas na praia", "data": "2 de fevereiro" },
+    { "nome": "Festival de Teatro de Petrópolis", "descricao": "Evento com diversas apresentações teatrais", "data": "junho" },
+    { "nome": "Festival da Jabuticaba", "descricao": "Evento gastronômico e cultural na região serrana", "data": "novembro" }
+    ],
+
+    "Rio Grande do Norte": [
+    { "nome": "Carnaval de Natal", "descricao": "Carnaval com blocos de rua e desfiles na capital potiguar", "data": "fevereiro/março" },
+    { "nome": "Festa de Santa Luzia", "descricao": "Festa religiosa tradicional na cidade de Mossoró", "data": "13 de dezembro" },
+    { "nome": "Festival de Música de Natal", "descricao": "Evento com concertos e apresentações musicais", "data": "setembro" },
+    { "nome": "Festa de Sant’Ana de Caicó", "descricao": "Festa religiosa e cultural com novenas e procissões", "data": "julho" },
+    { "nome": "Festival de Quadrilhas Juninas", "descricao": "Competições de quadrilhas em várias cidades do estado", "data": "junho" },
+    { "nome": "Carnatal", "descricao": "Maior micareta do Rio Grande do Norte, com blocos e shows", "data": "dezembro" },
+    { "nome": "Festival de Gastronomia de Pipa", "descricao": "Evento gastronômico com chefs locais e pratos típicos", "data": "agosto" },
+    { "nome": "Festa do Boi de Parazinho", "descricao": "Manifestação cultural com dança, música e folclore", "data": "julho" },
+    { "nome": "Festival de Teatro de Natal", "descricao": "Mostra de peças teatrais e oficinas culturais", "data": "outubro" },
+    { "nome": "Festival de Dança de Natal", "descricao": "Evento com apresentações de dança variadas", "data": "novembro" }
+    ],
+    "Rio Grande do Sul": [
+    { "nome": "Festa da Uva", "descricao": "Celebração da cultura italiana e da colheita da uva em Caxias do Sul", "data": "fevereiro/março" },
+    { "nome": "Acampamento Farroupilha", "descricao": "Comemoração da cultura gaúcha com música, churrasco e tradições", "data": "setembro" },
+    { "nome": "Festival de Cinema de Gramado", "descricao": "Um dos mais importantes festivais de cinema da América Latina", "data": "agosto" },
+    { "nome": "Fenadoce", "descricao": "Feira nacional do doce com foco na doçaria portuguesa", "data": "maio/junho" },
+    { "nome": "Expointer", "descricao": "Maior feira agropecuária da América Latina, em Esteio", "data": "agosto/setembro" },
+    { "nome": "Festa do Pinhão de São Francisco de Paula", "descricao": "Evento cultural e gastronômico da serra gaúcha", "data": "maio" },
+    { "nome": "Festival Internacional de Folclore de Nova Petrópolis", "descricao": "Encontro de culturas com danças típicas", "data": "julho" },
+    { "nome": "Enart", "descricao": "Encontro de artes e tradições gaúchas", "data": "novembro" },
+    { "nome": "Porto Verão Alegre", "descricao": "Festival de teatro e arte em Porto Alegre", "data": "janeiro/fevereiro" },
+    { "nome": "Festa Nacional do Chimarrão (Fenachim)", "descricao": "Celebração da cultura do chimarrão em Venâncio Aires", "data": "maio" }
+    ],
+
+    "Roraima": [
+    { "nome": "Festa de São Sebastião", "descricao": "Festa tradicional religiosa em Boa Vista", "data": "janeiro" },
+    { "nome": "Boa Vista Junina", "descricao": "Maior festa junina de Roraima com quadrilhas e shows", "data": "junho" },
+    { "nome": "Festival de Praia do Cauamé", "descricao": "Evento esportivo e cultural nas margens do rio Cauamé", "data": "julho" },
+    { "nome": "Festa do Milho", "descricao": "Celebração rural com comidas típicas e danças", "data": "junho" },
+    { "nome": "Festival de Música Canta Roraima", "descricao": "Festival de música autoral com artistas locais", "data": "dezembro" },
+    { "nome": "Festival Literário de Roraima", "descricao": "Encontro de literatura com autores locais e nacionais", "data": "outubro" },
+    { "nome": "Festa do Sol", "descricao": "Celebração indígena e cultural no município de Amajari", "data": "setembro" },
+    { "nome": "Festival Folclórico de Boa Vista", "descricao": "Apresentações culturais e danças típicas de vários povos", "data": "agosto" },
+    { "nome": "Festival Indígena do Lago Caracaranã", "descricao": "Evento com rituais, artesanato e esportes tradicionais", "data": "outubro" },
+    { "nome": "Semana do Lavrado", "descricao": "Celebração do bioma do lavrado com arte e ciência", "data": "novembro" }
+    ],
+
+    "Rondônia": [
+    { "nome": "Arraial Flor do Maracujá", "descricao": "Maior festa junina da região Norte, com bois-bumbás e quadrilhas", "data": "junho/julho" },
+    { "nome": "Expocol", "descricao": "Exposição agropecuária e industrial de Colorado do Oeste", "data": "setembro" },
+    { "nome": "Festa do Divino Espírito Santo", "descricao": "Festa religiosa com procissões e comidas típicas", "data": "maio/junho" },
+    { "nome": "Festa do Café de Cacoal", "descricao": "Evento agropecuário e cultural com foco na cafeicultura", "data": "agosto" },
+    { "nome": "Festival de Praia de Pimenteiras", "descricao": "Festival com esportes, música e lazer no rio Guaporé", "data": "julho" },
+    { "nome": "Festival Gastronômico de Porto Velho", "descricao": "Evento com pratos regionais da culinária amazônica", "data": "setembro" },
+    { "nome": "Rondônia Rural Show", "descricao": "Feira de agronegócio internacional em Ji-Paraná", "data": "maio" },
+    { "nome": "Festival de Cinema Curta Amazônia", "descricao": "Festival de cinema com produções da região norte", "data": "novembro" },
+    { "nome": "Mostra Sesc Amazônia das Artes", "descricao": "Circuito cultural com teatro, música e exposições", "data": "abril" },
+    { "nome": "Festival de Dança Norte em Movimento", "descricao": "Evento de dança contemporânea e folclórica", "data": "outubro" }
+    ],
+
+    "Santa Catarina": [
+    { "nome": "Oktoberfest de Blumenau", "descricao": "Maior festa alemã das Américas com trajes típicos, música e chope", "data": "outubro" },
+    { "nome": "Fenarreco", "descricao": "Festa Nacional do Marreco em Brusque com gastronomia típica", "data": "outubro" },
+    { "nome": "Festa do Pinhão de Lages", "descricao": "Festival com shows, tradições serranas e pratos com pinhão", "data": "junho" },
+    { "nome": "Festival de Dança de Joinville", "descricao": "Maior festival de dança do mundo em número de participantes", "data": "julho" },
+    { "nome": "Marejada", "descricao": "Festa portuguesa de peixe e frutos do mar em Itajaí", "data": "outubro" },
+    { "nome": "Schützenfest", "descricao": "Festa dos atiradores em Jaraguá do Sul com trajes e comidas típicas", "data": "novembro" },
+    { "nome": "Festa Nacional da Maçã", "descricao": "Evento tradicional de São Joaquim celebrando a produção da fruta", "data": "abril" },
+    { "nome": "Festa do Colono", "descricao": "Homenagem aos colonizadores com desfiles e comidas típicas", "data": "julho" },
+    { "nome": "Festival de Música de Itajaí", "descricao": "Encontro de música instrumental com shows e oficinas", "data": "agosto" },
+    { "nome": "Encontro Catarinense de Teatro", "descricao": "Mostra de grupos teatrais de todo o estado", "data": "setembro" }
+    ],
+
+    "São Paulo": [
+    { "nome": "Virada Cultural", "descricao": "Evento gratuito com 24h de cultura e arte em toda a cidade", "data": "maio/junho" },
+    { "nome": "Festival de Inverno de Campos do Jordão", "descricao": "Maior festival de música clássica da América Latina", "data": "julho" },
+    { "nome": "São Paulo Fashion Week", "descricao": "Principal evento de moda da América do Sul", "data": "abril e outubro" },
+    { "nome": "Festival Lollapalooza Brasil", "descricao": "Festival internacional de música alternativa", "data": "março" },
+    { "nome": "Festival de Cinema de Paulínia", "descricao": "Importante mostra de cinema nacional", "data": "junho" },
+    { "nome": "Parada do Orgulho LGBTQIA+ SP", "descricao": "Maior parada do orgulho do mundo", "data": "junho" },
+    { "nome": "Festival da Mantiqueira", "descricao": "Literatura e cultura na Serra da Mantiqueira", "data": "junho" },
+    { "nome": "Mostra Internacional de Cinema de SP", "descricao": "Evento renomado com filmes de todo o mundo", "data": "outubro" },
+    { "nome": "Festival Revelando SP", "descricao": "Maior festival de cultura tradicional paulista", "data": "novembro" },
+    { "nome": "Festival João Rock", "descricao": "Festival de rock nacional em Ribeirão Preto", "data": "junho" }
+    ],
+
+    "Sergipe": [
+    { "nome": "Forró Caju", "descricao": "Um dos maiores festejos juninos do Brasil em Aracaju", "data": "junho" },
+    { "nome": "Festival de Artes de São Cristóvão (FASC)", "descricao": "Evento multicultural com música, teatro e poesia", "data": "novembro" },
+    { "nome": "Arraiá do Povo", "descricao": "Festa junina à beira-mar em Aracaju com forró e comidas típicas", "data": "junho/julho" },
+    { "nome": "Encontro Cultural de Laranjeiras", "descricao": "Evento folclórico com cortejos e tradições populares", "data": "janeiro" },
+    { "nome": "Festival de Cinema Curta-SE", "descricao": "Festival de curtas-metragens e filmes independentes", "data": "setembro" },
+    { "nome": "Caju Bossa Nova", "descricao": "Festival de música brasileira na orla da capital", "data": "dezembro" },
+    { "nome": "Festival Iberoamericano de Cinema de Sergipe (FIC)", "descricao": "Mostra de cinema de países de língua portuguesa e espanhola", "data": "outubro" },
+    { "nome": "Festival de Música de Itabaiana", "descricao": "Festival que promove talentos locais da música", "data": "maio" },
+    { "nome": "Serigy Jazz Festival", "descricao": "Festival de jazz e música instrumental com artistas nacionais", "data": "abril" },
+    { "nome": "Festival de Inverno de Boquim", "descricao": "Festival com shows, teatro e gastronomia", "data": "julho" }
+    ],
+
+    "Tocantins": [
+    { "nome": "Festa do Divino de Natividade", "descricao": "Festa religiosa e cultural com cortejos, danças e comidas típicas", "data": "maio/junho" },
+    { "nome": "FesArtes de Taquaruçu", "descricao": "Festival de artes integradas com música, teatro e oficinas", "data": "setembro" },
+    { "nome": "Festa de São João de Porto Nacional", "descricao": "Festa junina com quadrilhas e atrações culturais", "data": "junho" },
+    { "nome": "Festival Gastronômico de Taquaruçu", "descricao": "Evento com comidas típicas, chefs renomados e apresentações artísticas", "data": "setembro" },
+    { "nome": "Feneciti Gurupi", "descricao": "Feira de cultura, ciência e tecnologia com shows e exposições", "data": "novembro" },
+    { "nome": "Festival de Cinema e Vídeo do Tocantins (FICTO)", "descricao": "Mostra audiovisual com curtas e longas metragens regionais", "data": "junho" },
+    { "nome": "Cantoria de São João Batista", "descricao": "Celebração tradicional com cantos, fogueiras e rituais religiosos", "data": "junho" },
+    { "nome": "Festival da Canção de Gurupi (FEGUP)", "descricao": "Festival musical com artistas do Tocantins e do Brasil", "data": "agosto" },
+    { "nome": "Festival Cultural do Jalapão", "descricao": "Evento que valoriza a cultura do cerrado e povos tradicionais", "data": "julho" },
+    { "nome": "Palmas Capital da Fé", "descricao": "Evento gospel com artistas nacionais durante o Carnaval", "data": "fevereiro" }
+    ],
+
+    "Distrito Federal": [
+    { "nome": "Festival de Brasília do Cinema Brasileiro", "descricao": "Um dos festivais de cinema mais antigos e importantes do Brasil", "data": "novembro" },
+    { "nome": "Porão do Rock", "descricao": "Grande festival de rock alternativo com bandas nacionais e internacionais", "data": "agosto/setembro" },
+    { "nome": "Festival CoMA", "descricao": "Festival de música, inovação e negócios criativos", "data": "agosto" },
+    { "nome": "Festival Latinidades", "descricao": "Maior festival da América Latina voltado à cultura da mulher negra", "data": "julho" },
+    { "nome": "Festival Taguatinga de Cinema", "descricao": "Festival audiovisual com foco em produções independentes", "data": "junho" },
+    { "nome": "Festival Micarê Candanga", "descricao": "Carnaval fora de época com trios e blocos", "data": "outubro" },
+    { "nome": "Festival de Culturas Populares", "descricao": "Celebração das tradições culturais do Brasil", "data": "março" },
+    { "nome": "Cena Contemporânea", "descricao": "Festival internacional de teatro e artes cênicas", "data": "agosto" },
+    { "nome": "Festival Internacional de Literatura de Brasília (FIL)", "descricao": "Evento com escritores, debates e saraus", "data": "setembro" },
+    { "nome": "Festival Brasília Capital Moto Week", "descricao": "Maior encontro de motociclistas da América Latina com shows de rock", "data": "julho" }
+    ]
+    };
+
+
+    // Estilo dos estados no mapa
+    function estilo(feature) {
+      return { color: '#4caf50', weight: 1, fillOpacity: 0.6 };
+    }
+
+    // Carrega GeoJSON dos estados e adiciona interatividade
+    fetch('https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson')
+      .then(res => res.json())
+      .then(geojsonData => {
+        layerEstados = L.geoJSON(geojsonData, {
+          style: estilo,
+          onEachFeature: (feature, layer) => {
+            const nome = feature.properties.name;
+            layer.on('click', (e) => {
+              const festas = festasPorEstado[nome] || [];
+              let html = `<h3>${nome}</h3><ul>`;
+              festas.forEach((f, i) => {
+                html += `<li><a href="#" onclick="event.preventDefault(); showDesc(${e.latlng.lat}, ${e.latlng.lng}, '${nome}', ${i})">${f.nome} (<em>${f.data}</em>)</a></li>`;
+              });
+              html += `</ul>`;
+              layer.bindPopup(html).openPopup();
+            });
+            layer.bindTooltip(nome, { permanent: false, direction: 'center' });
+          }
+        }).addTo(map);
+
+        // Ajusta visão para todo o Brasil inicialmente
+        map.fitBounds(layerEstados.getBounds());
+      });
+
+    // Função para exibir descrição da festa em um segundo balão
+    function showDesc(lat, lng, estado, idx) {
+      const f = festasPorEstado[estado][idx];
+      const popupContent = `<strong>${f.nome}</strong><br><em>Data:</em> ${f.data}<br><em>Descrição:</em> ${f.descricao}`;
+      L.popup({ maxWidth: 300 })
+        .setLatLng([lat, lng])
+        .setContent(popupContent)
+        .openOn(map);
+    }
+
+    // Botão para centralizar mapa no Brasil
+    document.getElementById('btn-centralizar').addEventListener('click', () => {
+      if (layerEstados) {
+        map.fitBounds(layerEstados.getBounds());
+      }
+    });
+  </script>
+   <footer>
+    <div class="container">
+      <p>&copy; 2025 Festejando, site criado sem fins lucrativos por Jefferson Dias Kreiner.</p>
+    </div>
+  </footer>
+</body>
+</html>
