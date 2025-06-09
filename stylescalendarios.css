@@ -1,12 +1,3 @@
-/* Reset e variáveis */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 :root {
   --primary-color: #A4C639;
   --dark-color: #333;
@@ -16,17 +7,15 @@
   --font-size-base: 1rem;
 }
 
-/* Global */
 html {
   scroll-behavior: smooth;
   font-size: var(--font-size-base);
 }
 
-html.large-font {
-  font-size: calc(var(--font-size-base) * 1.125);
-}
-html.small-font {
-  font-size: calc(var(--font-size-base) * 0.875);
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -42,7 +31,6 @@ body.dark-mode {
   color: var(--light-color);
 }
 
-/* Skip link */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -51,43 +39,44 @@ body.dark-mode {
   color: var(--light-color);
   padding: 8px;
   z-index: 100;
-  transition: top var(--transition);
+  transition: top 0.3s;
 }
 .skip-link:focus {
   top: 0;
 }
 
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
 /* Header */
 .site-header {
-  background-color: var(--light-color);
+  background: var(--light-color);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
-body.dark-mode .site-header {
-  background-color: #222;
-}
-
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .logo a {
+  text-decoration: none;
   font-size: 1.8rem;
   color: var(--primary-color);
-  text-decoration: none;
 }
 
-/* Accessibility controls */
 .accessibility-controls button {
-  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   background: none;
   border: 1px solid var(--dark-color);
   border-radius: 4px;
@@ -99,6 +88,10 @@ body.dark-mode .site-header {
 .accessibility-controls button:focus {
   outline: 3px solid var(--primary-color);
 }
+
+/* Font adjustments */
+html.small-font { font-size: 0.85rem; }
+html.large-font { font-size: 1.15rem; }
 
 /* Toggle button (hamburger) */
 .nav-toggle {
@@ -128,16 +121,12 @@ body.dark-mode .site-header {
 /* Menu */
 .menu {
   display: flex;
-  background-color: transparent;
-}
-body.dark-mode .menu {
-  background-color: #222;
 }
 
 .menu ul {
   display: flex;
-  gap: 1.5rem;
   list-style: none;
+  gap: 1.5rem;
 }
 
 .menu a {
@@ -148,115 +137,41 @@ body.dark-mode .menu {
   transition: var(--transition);
   border-radius: 4px;
 }
+
 .menu a:hover {
   color: var(--light-color);
   background: var(--primary-color);
 }
 
+/* Dark mode completo */
+body.dark-mode {
+  background: var(--dark-color);
+  color: var(--light-color);
+}
+
+/* Header e menu em dark mode */
+body.dark-mode .site-header,
+body.dark-mode .menu {
+  background-color: #222;
+}
+
 body.dark-mode .menu a {
   color: var(--light-color);
 }
+
 body.dark-mode .menu a:hover {
   color: var(--primary-color);
   background: none;
 }
 
-/* Container principal */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 0;
-}
-
-/* Main interno específico */
-#main.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: #fafafa;
-  color: #333;
-}
-body.dark-mode #main.container {
-  background-color: #2a2a2a;
-  color: var(--light-color);
-}
-
-/* Títulos */
+/* Main Title */
 h1 {
   margin-bottom: 1rem;
   font-size: 2rem;
   color: var(--primary-color);
 }
-#main h2 {
-  font-size: 1.8rem;
-  margin-top: 2rem;
-  border-left: 5px solid #1cec6c;
-  padding-left: 0.75rem;
-  color: #222;
-}
-body.dark-mode #main.container h2 {
-  color: var(--light-color);
-  border-left-color: var(--primary-color);
-}
 
-/* Texto básico */
-#main p {
-  margin: 0.5rem 0 1rem;
-  font-size: 1rem;
-}
-body.dark-mode #main.container p {
-  color: #ccc;
-}
-
-/* Listas padrão */
-#main ul {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 1.5rem;
-}
-#main ul li {
-  position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-#main ul li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #1cec6c;
-  font-weight: bold;
-}
-body.dark-mode #main.container ul li::before {
-  color: var(--primary-color);
-}
-
-/* Timeline */
-ul.timeline li {
-  border-left: 3px solid #1cec6c;
-  padding-left: 1rem;
-  margin-left: 0.5rem;
-  margin-bottom: 0.75rem;
-  position: relative;
-}
-ul.timeline li::before {
-  content: '';
-  position: absolute;
-  left: -8px;
-  top: 0.4em;
-  width: 12px;
-  height: 12px;
-  background-color: #1cec6c;
-  border-radius: 50%;
-}
-body.dark-mode ul.timeline li {
-  border-left-color: var(--primary-color);
-}
-body.dark-mode ul.timeline li::before {
-  background-color: var(--primary-color);
-}
-
-/* Calendário */
+/* Controls (month navigation) */
 .controls {
   display: flex;
   align-items: center;
@@ -280,6 +195,8 @@ body.dark-mode ul.timeline li::before {
   font-weight: 600;
   text-transform: capitalize;
 }
+
+/* Select Estado */
 #estado {
   display: block;
   margin: 0 auto 1.5rem;
@@ -293,26 +210,65 @@ body.dark-mode #estado {
   background: var(--dark-color);
   color: var(--light-color);
 }
+
+/* container “block” que limita altura e largura e ativa scroller */
 .calendario {
+
+  table-layout: fixed;       /* fixa a largura das colunas */
   width: 100%;
+  max-width: 600px;          /* de 700px para 600px */
+  max-height: 400px;         /* de 500px para 400px */
+  overflow: auto;            /* rolagem em X e Y */
+  margin: 0 auto 1.5rem;
   border-collapse: collapse;
-  margin-bottom: 1.5rem;
+  font-size: 0.75rem;        /* de 0.85rem para 0.75rem */
 }
+
+/* manter header rolando junto — basta que esteja dentro do .calendario */
+.calendario thead {
+  display: table;            /* restaura o comportamento de tabela */
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* corpo também precisa ficar como tabela para width fixa */
+.calendario tbody {
+  display: block;            /* separado para rolagem vertical */
+  width: 100%;
+  max-height: 350px;         /* dá espaço para o thead ficar visível */
+  overflow-y: auto;          /* rolagem só no corpo */
+  table-layout: fixed;
+}
+
+/* linhas do corpo */
+.calendario tbody tr {
+  display: table;            /* volta a ser linha de tabela */
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* células e cabeçalhos */
 .calendario th,
 .calendario td {
   border: 1px solid var(--gray-color);
   width: calc(100% / 7);
-  height: 100px;
+  height: 50px;              /* altura fixa */
   vertical-align: top;
-  padding: 0.25rem;
+  padding: 0.2rem;
   position: relative;
+  overflow: hidden;          /* corta o conteúdo que “vaza” */
   cursor: default;
 }
+
 .calendario th {
   background: var(--gray-color);
   text-align: center;
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
 }
+
+
+
+
 .dia {
   cursor: pointer;
   transition: background var(--transition);
@@ -324,6 +280,8 @@ body.dark-mode #estado {
   font-weight: 600;
   margin-bottom: 0.25rem;
 }
+
+/* Evento tags */
 .evento {
   display: block;
   font-size: 0.75rem;
@@ -342,9 +300,13 @@ body.dark-mode #estado {
   background: var(--gray-color);
   color: var(--dark-color);
 }
+
+/* Hoje */
 .hoje {
   outline: 2px solid var(--primary-color);
 }
+
+/* Detalhes do evento */
 #detalhesEvento {
   padding: 1rem;
   border: 1px solid var(--gray-color);
@@ -387,42 +349,6 @@ body.dark-mode #detalhesEvento {
   border: 2px solid var(--primary-color);
 }
 
-/* Galeria */
-.galeria {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 30px;
-}
-.galeria .item {
-  border: 3px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-  transition: transform var(--transition), box-shadow var(--transition);
-  background: var(--light-color);
-}
-.galeria .item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
-.galeria .item img {
-  width: 100%;
-  height: auto;
-  border-bottom: 4px solid var(--primary-color);
-  transition: transform var(--transition);
-}
-.galeria .item img:hover {
-  transform: scale(1.1);
-}
-body.dark-mode .galeria .item {
-  border-color: #555;
-  background: #2a2a2a;
-}
-body.dark-mode .galeria .item img {
-  border-bottom-color: var(--primary-color);
-}
-
 /* Footer */
 footer {
   background: var(--dark-color);
@@ -430,15 +356,14 @@ footer {
   padding: 1.5rem 0;
   text-align: center;
 }
-body.dark-mode footer {
-  background: #111;
-  color: var(--light-color);
-}
-
 /* Mobile */
 @media (max-width: 768px) {
   .nav-toggle {
     display: flex;
+  }
+   .calendario td, .calendario th {
+    height: 80px;
+    font-size: 0.75rem;
   }
   .menu {
     position: absolute;

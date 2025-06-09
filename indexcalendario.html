@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendário Interativo de Festas</title>
+  <link rel="stylesheet" href="stylescalendarios.css" />
+</head>
+<body>
+     <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo"><a href="index.html">Festejando</a></h1>
+
+      <div class="accessibility-controls">
+        <button id="btn-contrast" aria-label="Alternar modo claro/escuro">🌓</button>
+        <button id="btn-font-decrease" aria-label="Diminuir fonte">A-</button>
+        <button id="btn-font-increase" aria-label="Aumentar fonte">A+</button>
+        <button id="btn-reset" aria-label="Redefinir preferências">⭯</button>
+      </div>
+
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="indexcultura.html">História</a></li>
+          <li><a href="indexmapa.html">Mapa</a></li>
+          <li><a href="indexcalendario.html">Calendario</a></li>
+          <li><a href="indexgaleria.html">Galeria</a></li>
+          <li><a href="indexreceitas.html">Receitas</a></li>
+          <li><a href="indexmusica.html">Música</a></li>
+          <li><a href="indexsobre.html">Sobre</a></li>
+          <li><a href="indexcontato.html">Contato</a></li>
+          <li><a href="indexcomentarios.html">Fórum</a></li>
+          <li><a href="indexprofile.html">Perfil</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>🎉 Calendário de Festas 2025</h1>
+    <div class="controls">
+      <button id="prevMonth">&larr;</button>
+      <span id="mesAno"></span>
+      <button id="nextMonth">&rarr;</button>
+    </div>
+
+    <label for="estado">Selecione um estado:</label>
+    <select id="estado">
+        <option value="">-- Todos os estados --</option>
+        <option value="AC">Acre</option>
+        <option value="AL">Alagoas</option>
+        <option value="AP">Amapá</option>
+        <option value="AM">Amazonas</option>
+        <option value="BA">Bahia</option>
+        <option value="CE">Ceará</option>
+        <option value="DF">Distrito Federal</option>
+        <option value="ES">Espírito Santo</option>
+        <option value="GO">Goiás</option>
+        <option value="MA">Maranhão</option>
+        <option value="MT">Mato Grosso</option>
+        <option value="MS">Mato Grosso do Sul</option>
+        <option value="MG">Minas Gerais</option>
+        <option value="PA">Pará</option>
+        <option value="PB">Paraíba</option>
+        <option value="PR">Paraná</option>
+        <option value="PE">Pernambuco</option>
+        <option value="PI">Piauí</option>
+        <option value="RJ">Rio de Janeiro</option>
+        <option value="RN">Rio Grande do Norte</option>
+        <option value="RS">Rio Grande do Sul</option>
+        <option value="RO">Rondônia</option>
+        <option value="RR">Roraima</option>
+        <option value="SC">Santa Catarina</option>
+        <option value="SP">São Paulo</option>
+        <option value="SE">Sergipe</option>
+        <option value="TO">Tocantins</option>
+    </select>
+
+    <div id="calendario"></div>
+    <div id="detalhesEvento"></div>
+
+    <div class="legend">
+      <span class="legenda-item"><div class="color-box nacional"></div> Nacional</span>
+      <span class="legenda-item"><div class="color-box regional"></div> Regional</span>
+      <span class="legenda-item"><div class="color-box hoje"></div> Hoje</span>
+    </div>
+  </div>
+ <footer>
+    <div class="container">
+      <p>&copy; 2025 Festejando, site criado sem fins lucrativos por Jefferson Dias Kreiner.</p>
+    </div>
+  </footer>
+  <script src="scriptcalendario.js"></script>
+</body>
+</html>
