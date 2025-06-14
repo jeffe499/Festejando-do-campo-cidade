@@ -1,11 +1,8 @@
-// comentarios.js
-// === Controles de acessibilidade ===
 const btnContrast     = document.getElementById('btn-contrast');
 const btnFontIncrease = document.getElementById('btn-font-increase');
 const btnFontDecrease = document.getElementById('btn-font-decrease');
 const btnReset        = document.getElementById('btn-reset');
 
-// Carrega preferências
 if (localStorage.getItem('darkMode') === 'enabled') {
   document.body.classList.add('dark-mode');
 }
@@ -16,7 +13,6 @@ if (fontPref === 'large') {
   document.documentElement.classList.add('small-font');
 }
 
-// Função para transformar URLs em links clicáveis
 function linkify(text) {
   if (typeof text !== 'string') return '';
   const urlPattern = /(https?:\/\/[^\s]+)/g;
@@ -26,7 +22,6 @@ function linkify(text) {
   });
 }
 
-// Toggle dark mode
 btnContrast.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   localStorage.setItem(
@@ -35,7 +30,6 @@ btnContrast.addEventListener('click', () => {
   );
 });
 
-// Aumentar fonte
 btnFontIncrease.addEventListener('click', () => {
   document.documentElement.classList.remove('small-font');
   document.documentElement.classList.toggle('large-font');
@@ -45,7 +39,6 @@ btnFontIncrease.addEventListener('click', () => {
   );
 });
 
-// Diminuir fonte
 btnFontDecrease.addEventListener('click', () => {
   document.documentElement.classList.remove('large-font');
   document.documentElement.classList.toggle('small-font');
@@ -55,7 +48,7 @@ btnFontDecrease.addEventListener('click', () => {
   );
 });
 
-// Reset preferências
+
 btnReset.addEventListener('click', () => {
   document.body.classList.remove('dark-mode');
   document.documentElement.classList.remove('small-font','large-font');
@@ -63,7 +56,7 @@ btnReset.addEventListener('click', () => {
   localStorage.removeItem('fontSize');
 });
 
-// === Lógica do fórum de comentários ===
+
 const COMMENT_BIN_ID   = '681fbdb78960c979a596eccf';
 const PROFILE_BIN_ID   = '68265b398960c979a59a4454';
 const API_KEY          = '$2a$10$kplpgtHvPKcUTXITnT2lV.ToAJpCEYzGQYSWD7qKfYL65ZrJH3Sni';
@@ -78,7 +71,7 @@ if (!sessionStorage.getItem('loggedEmail')) {
   newPostBtn.setAttribute('title','Entre para postar');
 }
 
-// Redireciona ao criar novo post
+
 newPostBtn.addEventListener('click', () => {
   if (sessionStorage.getItem('loggedEmail')) {
     window.location.href = 'indexpublicar.html';
@@ -172,7 +165,7 @@ async function loadPosts() {
         <div class="post-body">${linkify(post.body)}</div>
       `;
 
-      // replies
+      
       const repliesDiv = document.createElement('div');
       repliesDiv.className = 'replies';
       post.replies.forEach(r => {
@@ -190,7 +183,7 @@ async function loadPosts() {
         repliesDiv.appendChild(rep);
       });
 
-      // reply form
+      
       const form = document.createElement('form');
       form.className = 'reply-form';
       form.dataset.id = post.id;
@@ -203,7 +196,7 @@ async function loadPosts() {
       postsList.appendChild(card);
     });
 
-    // handlers
+    
     document.querySelectorAll('.delete-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
         if (!confirm('Excluir este post?')) return;
@@ -247,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const menu              = document.querySelector('.menu');
   const menuLinks         = document.querySelectorAll('.menu a');
 
-  // Aplica preferências do localStorage
+  
   if (localStorage.getItem('darkMode') === 'enabled') {
     document.body.classList.add('dark-mode');
   }
@@ -258,14 +251,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.classList.add('small-font');
   }
 
-  // Alterna modo claro/escuro
+ 
   btnContrast?.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     const enabled = document.body.classList.contains('dark-mode');
     localStorage.setItem('darkMode', enabled ? 'enabled' : 'disabled');
   });
 
-  // Aumenta fonte
+
   btnFontIncrease?.addEventListener('click', () => {
     document.documentElement.classList.remove('small-font');
     document.documentElement.classList.toggle('large-font');
@@ -273,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('fontSize', size);
   });
 
-  // Diminui fonte
+
   btnFontDecrease?.addEventListener('click', () => {
     document.documentElement.classList.remove('large-font');
     document.documentElement.classList.toggle('small-font');
@@ -281,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('fontSize', size);
   });
 
-  // Redefine tudo
+
   btnReset?.addEventListener('click', () => {
     document.body.classList.remove('dark-mode');
     document.documentElement.classList.remove('small-font', 'large-font');
@@ -289,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('fontSize');
   });
 
-  // Menu mobile
+
   navToggle?.addEventListener('click', () => {
     const expanded = navToggle.getAttribute('aria-expanded') === 'true';
     navToggle.setAttribute('aria-expanded', String(!expanded));

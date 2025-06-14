@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const menu              = document.querySelector('.menu');
   const menuLinks         = document.querySelectorAll('.menu a');
 
-  // Aplica preferências do localStorage
   if (localStorage.getItem('darkMode') === 'enabled') {
     document.body.classList.add('dark-mode');
   }
@@ -18,14 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.classList.add('small-font');
   }
 
-  // Alterna modo claro/escuro
   btnContrast?.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     const enabled = document.body.classList.contains('dark-mode');
     localStorage.setItem('darkMode', enabled ? 'enabled' : 'disabled');
   });
 
-  // Aumenta fonte
   btnFontIncrease?.addEventListener('click', () => {
     document.documentElement.classList.remove('small-font');
     document.documentElement.classList.toggle('large-font');
@@ -33,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('fontSize', size);
   });
 
-  // Diminui fonte
   btnFontDecrease?.addEventListener('click', () => {
     document.documentElement.classList.remove('large-font');
     document.documentElement.classList.toggle('small-font');
@@ -41,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('fontSize', size);
   });
 
-  // Redefine tudo
   btnReset?.addEventListener('click', () => {
     document.body.classList.remove('dark-mode');
     document.documentElement.classList.remove('small-font', 'large-font');
@@ -49,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('fontSize');
   });
 
-  // Menu mobile
   navToggle?.addEventListener('click', () => {
     const expanded = navToggle.getAttribute('aria-expanded') === 'true';
     navToggle.setAttribute('aria-expanded', String(!expanded));

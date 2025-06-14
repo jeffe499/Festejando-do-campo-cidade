@@ -1,10 +1,9 @@
-// Controles de acessibilidade
 const btnContrast = document.getElementById('btn-contrast');
 const btnFontIncrease = document.getElementById('btn-font-increase');
 const btnFontDecrease = document.getElementById('btn-font-decrease');
 const btnReset = document.getElementById('btn-reset');
 
-// Carrega preferências do localStorage
+
 if (localStorage.getItem('darkMode') === 'enabled') {
   document.body.classList.add('dark-mode');
 }
@@ -41,7 +40,7 @@ btnReset.addEventListener('click', () => {
   localStorage.removeItem('fontSize');
 });
 
-// Script de navegação (menu mobile)
+
 const navToggle = document.querySelector('.nav-toggle');
 const menu = document.querySelector('.menu');
 const menuLinks = document.querySelectorAll('.menu a');

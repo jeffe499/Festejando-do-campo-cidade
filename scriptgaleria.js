@@ -1,12 +1,8 @@
-// galeria.js
-
-// === Controles de acessibilidade ===
 const btnContrast     = document.getElementById('btn-contrast');
 const btnFontIncrease = document.getElementById('btn-font-increase');
 const btnFontDecrease = document.getElementById('btn-font-decrease');
 const btnReset        = document.getElementById('btn-reset');
 
-// Função para aplicar preferências de fonte
 function applyFontPref(pref) {
   document.documentElement.classList.remove('large-font', 'small-font');
   if (pref === 'large') {
@@ -16,20 +12,17 @@ function applyFontPref(pref) {
   }
 }
 
-// Carrega preferências
 if (localStorage.getItem('darkMode') === 'enabled') {
   document.body.classList.add('dark-mode');
 }
 const fontPref = localStorage.getItem('fontSize') || 'normal';
 applyFontPref(fontPref);
 
-// Dark mode toggle
 btnContrast.addEventListener('click', () => {
   const isDark = document.body.classList.toggle('dark-mode');
   localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
 });
 
-// Font size adjust
 btnFontIncrease.addEventListener('click', () => {
   const newPref = document.documentElement.classList.contains('large-font') ? 'normal' : 'large';
   localStorage.setItem('fontSize', newPref);
@@ -42,7 +35,6 @@ btnFontDecrease.addEventListener('click', () => {
   applyFontPref(newPref);
 });
 
-// Reset preferences
 btnReset.addEventListener('click', () => {
   document.body.classList.remove('dark-mode');
   localStorage.setItem('darkMode', 'disabled');
@@ -50,7 +42,6 @@ btnReset.addEventListener('click', () => {
   applyFontPref('normal');
 });
 
-// === Menu mobile toggle ===
 const navToggle = document.querySelector('.nav-toggle');
 const menu      = document.querySelector('.menu');
 const menuLinks = document.querySelectorAll('.menu a');

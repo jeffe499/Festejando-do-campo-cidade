@@ -1,11 +1,8 @@
-// publicar.js
-// === Controles de acessibilidade ===
 const btnContrast     = document.getElementById('btn-contrast');
 const btnFontIncrease = document.getElementById('btn-font-increase');
 const btnFontDecrease = document.getElementById('btn-font-decrease');
 const btnReset        = document.getElementById('btn-reset');
 
-// Carrega preferências
 if (localStorage.getItem('darkMode') === 'enabled') {
   document.body.classList.add('dark-mode');
 }
@@ -16,7 +13,6 @@ if (fontPref === 'large') {
   document.documentElement.classList.add('small-font');
 }
 
-// Dark mode toggle
 btnContrast.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   localStorage.setItem(
@@ -25,7 +21,6 @@ btnContrast.addEventListener('click', () => {
   );
 });
 
-// Aumentar fonte
 btnFontIncrease.addEventListener('click', () => {
   document.documentElement.classList.remove('small-font');
   document.documentElement.classList.toggle('large-font');
@@ -35,7 +30,6 @@ btnFontIncrease.addEventListener('click', () => {
   );
 });
 
-// Diminuir fonte
 btnFontDecrease.addEventListener('click', () => {
   document.documentElement.classList.remove('large-font');
   document.documentElement.classList.toggle('small-font');
@@ -45,7 +39,6 @@ btnFontDecrease.addEventListener('click', () => {
   );
 });
 
-// Reset preferências
 btnReset.addEventListener('click', () => {
   document.body.classList.remove('dark-mode');
   document.documentElement.classList.remove('small-font','large-font');
@@ -54,7 +47,6 @@ btnReset.addEventListener('click', () => {
 });
 
 
-// === Lógica de publicação ===
 const COMMENT_BIN_ID  = '681fbdb78960c979a596eccf';
 const COMMENT_API_URL = `https://api.jsonbin.io/v3/b/${COMMENT_BIN_ID}`;
 const API_KEY         = '$2a$10$kplpgtHvPKcUTXITnT2lV.ToAJpCEYzGQYSWD7qKfYL65ZrJH3Sni';

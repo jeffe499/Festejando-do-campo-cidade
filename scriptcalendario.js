@@ -1,8 +1,7 @@
 const eventosNacionais = {
-  // Feriados Nacionais Oficiais
   "2025-01-01": ["Confraternização Universal (Ano Novo)"],
-  "2025-03-04": ["Carnaval"],                          // terça-feira
-  "2025-03-05": ["Quarta-feira de Cinzas"],             // ponto facultativo até meio-dia
+  "2025-03-04": ["Carnaval"],                       
+  "2025-03-05": ["Quarta-feira de Cinzas"],           
   "2025-04-18": ["Sexta-feira Santa (Paixão de Cristo)"],
   "2025-04-21": ["Tiradentes"],
   "2025-05-01": ["Dia do Trabalho"],
@@ -333,7 +332,6 @@ DF: {
 }
 
 };
-// Elementos do DOM
 const estadoSelect = document.getElementById('estado');
 const calendarioEl = document.getElementById('calendario');
 const mesAnoEl    = document.getElementById('mesAno');
@@ -342,18 +340,15 @@ const nextBtn     = document.getElementById('nextMonth');
 const detalhesEl  = document.getElementById('detalhesEvento');
 let dataAtual     = new Date();
 
-// Eventos de navegação
 estadoSelect.addEventListener('change', gerarCalendario);
 prevBtn.addEventListener('click', () => mudarMes(-1));
 nextBtn.addEventListener('click', () => mudarMes(1));
 
-// Altera mês e regenera calendário
 function mudarMes(delta) {
   dataAtual.setMonth(dataAtual.getMonth() + delta);
   gerarCalendario();
 }
 
-// Gera a tabela do calendário
 function gerarCalendario() {
   const ano = dataAtual.getFullYear();
   const mes = dataAtual.getMonth();
@@ -376,12 +371,12 @@ function gerarCalendario() {
     html += `<td class="dia${isHoje ? ' hoje' : ''}" data-date="${dateStr}">`;
     html += `<div class="num">${dia}</div>`;
 
-    // eventos nacionais
+  
     (eventosNacionais[dateStr] || []).forEach(evt => {
       html += `<div class="evento nacional">${evt}</div>`;
     });
 
-    // eventos regionais: agrega todos se nenhum estado selecionado
+    
     let regionalList = [];
     const estado = estadoSelect.value;
     if (!estado) {
@@ -405,7 +400,6 @@ function gerarCalendario() {
   html += '</tr></tbody></table>';
   calendarioEl.innerHTML = html;
 
-  // adiciona detalhes via delegação
   calendarioEl.querySelectorAll('td[data-date]').forEach(td => {
     td.addEventListener('click', () => mostrarDetalhes(td.dataset.date));
   });
@@ -423,12 +417,9 @@ function mostrarDetalhes(dateStr) {
   }
   const todos = [...nacional, ...regionalList];
 
-  // --- aqui vem a mudança ---
-  // pega ano, mês e dia do dateStr "YYYY-MM-DD"
+  
   const [ano, mes, dia] = dateStr.split('-').map(Number);
-  // cria a Date no fuso local
   const dataLocal = new Date(ano, mes - 1, dia);
-  // --------------------------------
 
   let conteudo = `<h3>Eventos em ${dataLocal.toLocaleDateString('pt-BR')}</h3><ul>`;
   if (todos.length) {
@@ -442,8 +433,7 @@ function mostrarDetalhes(dateStr) {
 }
 
 
-// === Acessibilidade e menu mobile ===
-// Controles de contraste e fonte
+
 document.getElementById('btn-contrast').addEventListener('click', () => {
   const isDark = document.body.classList.toggle('dark-mode');
   localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
@@ -467,7 +457,6 @@ document.getElementById('btn-reset').addEventListener('click', () => {
   localStorage.setItem('fontSize', 'normal');
 });
 
-// Carrega preferências ao iniciar
 if (localStorage.getItem('darkMode') === 'enabled') {
   document.body.classList.add('dark-mode');
 }
@@ -475,7 +464,6 @@ const fontPref = localStorage.getItem('fontSize') || 'normal';
 if (fontPref === 'large') document.documentElement.classList.add('large-font');
 if (fontPref === 'small') document.documentElement.classList.add('small-font');
 
-// Menu mobile toggle
 const navToggle = document.querySelector('.nav-toggle');
 const menu      = document.querySelector('.menu');
 navToggle.addEventListener('click', () => {

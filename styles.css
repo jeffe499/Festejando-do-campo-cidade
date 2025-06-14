@@ -111,14 +111,12 @@ body {
   line-height: 1.6;
 }
 
-/* Container */
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Header */
 header {
   background: var(--light-color);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -155,7 +153,6 @@ header {
   transition: var(--transition);
 }
 
-/* Menu */
 .menu ul {
   display: flex;
   list-style: none;
@@ -179,7 +176,6 @@ header {
   border-radius: 4px;
 }
 
-/* Hero */
 #hero {
   position: relative;
   overflow: hidden;
@@ -225,13 +221,11 @@ header {
   opacity: 0.9;
 }
 
-/* Introdução */
 #intro {
   padding: 2rem 0;
   text-align: center;
 }
 
-/* Cards */
 #features {
   padding: 2rem 0;
 }
@@ -270,7 +264,6 @@ header {
   transform: translateY(-5px);
 }
 
-/* Footer */
 footer {
   background: var(--dark-color);
   color: var(--light-color);
@@ -278,7 +271,6 @@ footer {
   text-align: center;
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   .nav-toggle {
     display: flex;

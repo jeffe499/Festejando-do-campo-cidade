@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mapa Interativo do Brasil</title>
-  <!-- Seu CSS geral -->
   <link rel="stylesheet" href="stylesmapa.css" />
-  <!-- CSS do Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
 </head>
@@ -56,16 +54,11 @@
 
   </main>
 
-  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    // Variável global para camada dos estados e para o mapa
     let layerEstados;
-
-    // Inicializa o mapa
     const map = L.map('map', { zoomControl: true, attributionControl: false });
 
-    // Objeto com festas por estado, agora incluindo data
        const festasPorEstado = {
  "Acre": [
     { "nome": "Carnaval da Família", "descricao": "Carnaval tradicional promovido em Rio Branco com shows, blocos e atrações para todas as idades", "data": "fevereiro" },
@@ -199,7 +192,7 @@
     { "nome": "Festa do Ovo de Terenos", "descricao": "Evento gastronômico local", "data": "setembro" },
     { "nome": "Festa do Queijo de Rochedinho", "descricao": "Festival rural de queijo artesanal", "data": "outubro" }
   ],
-  "Minas Gerais": [
+  "Minas Gerais": [
     { "nome": "Carnaval da Liberdade / Carnaval de BH", "descricao": "Maior carnaval artístico do Estado, com blocos e escolas de samba", "data": "fevereiro/março" },
     { "nome": "Festival Sarará", "descricao": "Festival de música alternativa em BH (ex: Liniker, BK)", "data": "maio" },
     { "nome": "Festival SENSACIONAL!", "descricao": "Festival de música com atrações nacionais em BH", "data": "junho" },
@@ -403,12 +396,12 @@
     };
 
 
-    // Estilo dos estados no mapa
+    
     function estilo(feature) {
       return { color: '#4caf50', weight: 1, fillOpacity: 0.6 };
     }
 
-    // Carrega GeoJSON dos estados e adiciona interatividade
+    
     fetch('https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson')
       .then(res => res.json())
       .then(geojsonData => {
@@ -429,11 +422,11 @@
           }
         }).addTo(map);
 
-        // Ajusta visão para todo o Brasil inicialmente
+        
         map.fitBounds(layerEstados.getBounds());
       });
 
-    // Função para exibir descrição da festa em um segundo balão
+    
     function showDesc(lat, lng, estado, idx) {
       const f = festasPorEstado[estado][idx];
       const popupContent = `<strong>${f.nome}</strong><br><em>Data:</em> ${f.data}<br><em>Descrição:</em> ${f.descricao}`;
@@ -443,7 +436,6 @@
         .openOn(map);
     }
 
-    // Botão para centralizar mapa no Brasil
     document.getElementById('btn-centralizar').addEventListener('click', () => {
       if (layerEstados) {
         map.fitBounds(layerEstados.getBounds());
@@ -455,5 +447,6 @@
       <p>&copy; 2025 Festejando, site criado sem fins lucrativos por Jefferson Dias Kreiner.</p>
     </div>
   </footer>
+   <script src="scriptmapa.js"></script>
 </body>
 </html>

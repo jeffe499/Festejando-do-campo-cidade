@@ -1,4 +1,3 @@
-/* Reset e variáveis */
 * {
   margin: 0;
   padding: 0;
@@ -19,7 +18,6 @@
   --radius-md: 8px;
 }
 
-/* Global */
 html {
   scroll-behavior: smooth;
   font-size: var(--font-size-base);
@@ -40,11 +38,9 @@ body.dark-mode {
   color: var(--light-color);
 }
 
-/* Font sizing */
 .large-font { font-size: calc(var(--font-size-base) * 1.125) !important; }
 .small-font { font-size: calc(var(--font-size-base) * 0.875) !important; }
 
-/* Skip link */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -59,7 +55,6 @@ body.dark-mode {
   top: 0;
 }
 
-/* Header */
 .site-header {
   background-color: var(--light-color);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -86,7 +81,6 @@ body.dark-mode .site-header {
   text-decoration: none;
 }
 
-/* Accessibility controls */
 .accessibility-controls button {
   margin-right: var(--space-sm);
   background: none;
@@ -106,7 +100,6 @@ body.dark-mode .accessibility-controls button {
   color: var(--light-color);
 }
 
-/* Formulário de postagem */
 .forum-post-container {
   background: var(--light-color);
   width: 100%;
@@ -159,7 +152,6 @@ body.dark-mode textarea {
   border: 1px solid #555;
 }
 
-/* Botões */
 button#publishBtn,
 a.button-voltar {
   display: inline-block;
@@ -190,7 +182,6 @@ a.button-voltar:focus {
   outline-offset: 2px;
 }
 
-/* Footer */
 footer {
   background: var(--dark-color);
   color: var(--light-color);
@@ -202,7 +193,6 @@ footer {
   transition: background var(--transition), color var(--transition);
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   body {
     padding: var(--space-md);
