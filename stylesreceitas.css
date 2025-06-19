@@ -234,6 +234,7 @@ body.dark-mode ul.timeline li::before {
   background-color: var(--accent-alt);
 }
 
+
 #main img,
 .container img {
   display: block;

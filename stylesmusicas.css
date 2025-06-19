@@ -67,7 +67,7 @@ html.small-font { font-size: 0.875rem; }
 }
 
 .accessibility-controls button {
-  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   background: none;
   border: 1px solid var(--dark-color);
   border-radius: 4px;
@@ -81,6 +81,10 @@ html.small-font { font-size: 0.875rem; }
   outline: 3px solid var(--primary-color);
 }
 
+body.dark-mode .accessibility-controls button {
+  border-color: var(--light-color);
+  color: var(--light-color);
+}
 .nav-toggle {
   display: none;
   flex-direction: column;

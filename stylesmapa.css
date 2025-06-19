@@ -291,6 +291,12 @@ footer {
 body.dark-mode footer {
   background: #222;
 }
+
+body.dark-mode .accessibility-controls button {
+  border-color: var(--light-color);
+  color: var(--light-color);
+}
+
 footer .controls button {
   background: none;
   border: 1px solid currentColor;

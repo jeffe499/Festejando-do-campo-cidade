@@ -332,7 +332,9 @@ body.dark-mode .site-header,
 body.dark-mode .menu {
   background-color: #222;
 }
-
+body.dark-mode .menu a {
+  color: var(--light-color);
+}
 body.dark-mode .logo a {
   color: var(--primary-color);
 }

@@ -54,6 +54,11 @@ body.dark-mode {
   outline: 3px solid var(--primary-color);
 }
 
+body.dark-mode .accessibility-controls button {
+  border-color: var(--light-color);
+  color: var(--light-color);
+}
+
 html.small-font { font-size: 0.85rem; }
 html.large-font { font-size: 1.15rem; }
 

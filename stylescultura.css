@@ -281,6 +281,11 @@ body.dark-mode ul.timeline li::before {
   background-color: var(--primary-color);
 }
 
+body.dark-mode .accessibility-controls button {
+  border-color: var(--light-color);
+  color: var(--light-color);
+}
+
 #main strong {
   color: #2c3e50;
 }

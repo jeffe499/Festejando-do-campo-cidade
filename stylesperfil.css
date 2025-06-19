@@ -274,6 +274,11 @@ body.dark-mode footer {
   color: var(--light-color);
 }
 
+body.dark-mode .accessibility-controls button {
+  border-color: var(--light-color);
+  color: var(--light-color);
+}
+
 footer p {
   font-size: 0.9rem;
 }

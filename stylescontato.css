@@ -118,6 +118,11 @@ h3 {
   outline: 3px solid var(--primary-color);
 }
 
+body.dark-mode .accessibility-controls button {
+  border-color: var(--light-color);
+  color: var(--light-color);
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
